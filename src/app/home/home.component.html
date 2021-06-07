@@ -1,0 +1,336 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/student">
+              <span data-feather="file"></span>
+              ข้อมูลนักศึกษา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/teacher">
+              <span data-feather="shopping-cart"></span>
+              ข้อมูลอาจารย์
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/course">
+              <span data-feather="users"></span>
+              ข้อมูลหลักสูตร
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/subject-group">
+              <span data-feather="bar-chart-2"></span>
+              ข้อมูลกลุ่มวิชา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/subject">
+              <span data-feather="layers"></span>
+              ข้อมูลรายวิชา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/institution">
+              <span data-feather="layers"></span>
+              ข้อมูลสถาบันเดิม
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/structures">
+              <span data-feather="layers"></span>
+              ข้อมูลโครงสร้างหลักสูตร
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isStudent())">
+            <a class="nav-link" routerLink="/transfers">
+              <span data-feather="file"></span>
+              ผลการเทียบโอนรายวิชา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isStudent())">
+            <a class="nav-link" routerLink="/student-adding">
+              <span data-feather="shopping-cart"></span>
+              เพิ่มถอนรายวิชา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
+            <a class="nav-link" routerLink="/subject-institution">
+              <span data-feather="file"></span>
+              ข้อมูลรายวิชาจากสถาบันเดิม
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
+            <a class="nav-link" routerLink="/transfer">
+              <span data-feather="file"></span>
+              ข้อมูลการเทียบโอนรายวิชา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
+            <a class="nav-link" routerLink="/teacher-adding" routerLinkActive="active">
+              <span data-feather="file"></span>
+              เพิ่ม ถอน รายวิชา
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span *ngIf="logoutbtn">รายงาน</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin()||isStudent())">
+            <a class="nav-link" routerLink="/structure">
+              <span data-feather="file-text"></span>
+              โครงสร้างหลักสูตร
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
+            <a class="nav-link" routerLink="/report-transfer">
+              <span data-feather="file-text"></span>
+              รายงานสรุปสถิติผลการเทียบโอนแยกตามรายวิชาของทั้งสาขา
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isLoout())">
+            <a class="nav-link" routerLink="#">
+              <span data-feather="file-text"></span>
+              รายงานสรุปผลการบันทึกรายวิชาเทียบโอน
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isStudent())">
+            <a class="nav-link" routerLink="/adding">
+              <span data-feather="file-text"></span>
+              รายงานการเพิ่มถอน
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isStudent())">
+            <a class="nav-link" routerLink="/report-transfers">
+              <span data-feather="file-text"></span>
+              รายงานสรุปผลการบันทึกรายวิชาเทียบโอน
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
+            <a class="nav-link" routerLink="/report-transfer-sec">
+              <span data-feather="file-text"></span>
+              รายงานสรุปสถิติผลการเทียบโอนแยกตามรายวิชาของทั้งห้อง
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3 col-md-6" *ngIf="(isLoout() && isLoout())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนผู้ใช้งาน</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let u of user">{{u.User_ID}} คน</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isAdmin())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนนักศึกษา</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let s of student">{{s.Student_ID}} คน</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isAdmin())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนอาจารย์</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let t of teacher">{{t.Teacher_ID}} คน</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-default text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isAdmin())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนหลักสูตร</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let c of course">{{c.Course_ID}} หลักสูตร</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isAdmin())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนกลุ่มวิชา</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let g of subjectgroup">{{g.Group_ID}} กลุ่ม</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-cyan text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isAdmin())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรายวิชา</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let s of subject">{{s.Subject_ID}} วิชา</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isAdmin())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนสถาบันเดิม</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let i of institution">{{i.Institution_ID}} ที่</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-indigo text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isStudent())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรอการอนุมัติเพิ่มถอนของนักศึกษา</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let a of adding">{{a.Add_With_ID}} วิชา</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isStudent())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนหน่วยกิตที่เทียบโอนได้ของนักศึกษา</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let t of transfer">{{t.Subject_Credit}} หน่วยกิต</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรอการอนุมัติเพิ่มถอนของนักศึกษา</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let add of addings">{{add.Add_With_ID}} วิชา</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรายวิชาจากสถาบันเดิม</h5>
+                  <span class="h2 font-weight-bold mb-0" *ngFor="let si of subjectinstitution">{{si.Subject_Ins_ID}} วิชา</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

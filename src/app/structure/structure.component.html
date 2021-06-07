@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-nav></app-nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+        <h2>โครงสร้างหลักสูตร</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col"><div align="center">ลำดับที่</div></th>
+                <th scope="col">รหัสหลักสูตร</th>
+                <th scope="col">ชื่อหลักสูตร</th>
+                <th scope="col"><div align="center">หน่วยกิตทั้งหมด</div></th>
+                <th scope="col"><div align="center">แสดงข้อมูลโครงสร้างหลักสูตรวิชา</div></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of structure let i = index">
+                <th scope="row"><div align="center">{{ i+1 }}</div></th>
+                <td>{{s.Course_ID}}</td>
+                <td>{{s.Course_Name}}</td>
+                <td><div align="center">{{s.Course_Allcredit | number:0}}</div></td>
+                <td>
+                  <div align="center">
+                  <a [routerLink]="['/structure',s.Course_ID,s.Course_Name]">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </main>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active">
+              <span data-feather="home"></span>
+              หน้าหลัก <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+              <span data-feather="file"></span>
+              ย้อนกลับ
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+      <h2>เพิ่ม/ถอนรายวิชา</h2>
+      <form #addingForm="ngForm" novalidate>
+        <div class="form-row align-item-center">
+          <div class="input-group mb-3">
+            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+          </div>
+        </div>
+      </form>
+
+      <div class="table-responsive">
+        <table class="mat-elevation-z8" mat-table [dataSource]="dataSource">
+          <!-- ลำดับที่ Column -->
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef width="70"><div align = "center">ลำดับที่</div></th>
+            <td mat-cell *matCellDef="let element let i = index"><div align = "center">{{ i+1 }}</div></td>
+          </ng-container>
+
+          <!-- รหัสเพิ่มถอนรายวิชา Column -->
+          <ng-container matColumnDef="Add_With_ID">
+            <th mat-header-cell *matHeaderCellDef width="150">รหัสเพิ่มถอนรายวิชา</th>
+            <td mat-cell *matCellDef="let element"> {{element.Add_With_ID}} </td>
+          </ng-container>
+
+          <!-- รหัสนักศึกษา Column -->
+          <ng-container matColumnDef="Student_ID">
+            <th mat-header-cell *matHeaderCellDef width="140"><div align = "center">รหัสนักศึกษา</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Student_ID}}</div></td>
+          </ng-container>
+
+          <!-- ชื่อนักศึกษา Column -->
+          <ng-container matColumnDef="Student_Name">
+            <th mat-header-cell *matHeaderCellDef width="150">ชื่อนักศึกษา</th>
+            <td mat-cell *matCellDef="let element"> {{element.Student_Name}} </td>
+          </ng-container>
+
+          <!-- รหัสอาจารย์ Column -->
+          <ng-container matColumnDef="Teacher_ID">
+            <th mat-header-cell *matHeaderCellDef width="120">รหัสอาจารย์</th>
+            <td mat-cell *matCellDef="let element"> {{element.Teacher_ID}} </td>
+          </ng-container>
+
+          <!-- ชื่ออาจารย์ Column -->
+          <ng-container matColumnDef="Teacher_Name">
+            <th mat-header-cell *matHeaderCellDef width="140">อาจารย์ที่ปรึกษา</th>
+            <td mat-cell *matCellDef="let element"> {{element.Teacher_Name}} </td>
+          </ng-container>
+
+          <!-- เพิ่ม/ถอน Column -->
+          <ng-container matColumnDef="Add_Withdraw">
+            <th mat-header-cell *matHeaderCellDef width="100">เพิ่ม/ถอน</th>
+            <td mat-cell *matCellDef="let element"> {{element.Add_Withdraw}} </td>
+          </ng-container>
+
+          <!-- รหัสวิชา Column -->
+          <ng-container matColumnDef="Subject_ID">
+            <th mat-header-cell *matHeaderCellDef width="120"><div align = "center">รหัสวิชา</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Subject_ID}}</div></td>
+          </ng-container>
+
+          <!-- ชื่อวิชา Column -->
+          <ng-container matColumnDef="Subject_Name">
+            <th mat-header-cell *matHeaderCellDef width="190">ชื่อวิชา</th>
+            <td mat-cell *matCellDef="let element"> {{element.Subject_Name}} </td>
+          </ng-container>
+
+          <!-- วันที่ Column -->
+          <ng-container matColumnDef="Instructor">
+            <th mat-header-cell *matHeaderCellDef width="170">อาจารย์ผู้สอน</th>
+            <td mat-cell *matCellDef="let element"> {{element.Instructor}} </td>
+          </ng-container>
+
+          <!-- วันที่ Column -->
+          <ng-container matColumnDef="Date">
+            <th mat-header-cell *matHeaderCellDef width="60"><div align = "center">วันที่</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Date}}</div></td>
+          </ng-container>
+
+          <!-- วันที่ Column -->
+          <ng-container matColumnDef="Year_ID">
+            <th mat-header-cell *matHeaderCellDef width="100">รหัสปีการศึกษา</th>
+            <td mat-cell *matCellDef="let element"> {{element.Year_ID}} </td>
+          </ng-container>
+          <!-- วันที่ Column -->
+          <ng-container matColumnDef="Year_Name">
+            <th mat-header-cell *matHeaderCellDef width="100"><div align = "center">ปีการศึกษา</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Year_Name}}</div></td>
+          </ng-container>
+
+          <!-- วันที่ Column -->
+          <ng-container matColumnDef="Term">
+            <th mat-header-cell *matHeaderCellDef width="60"><div align = "center">เทอม</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Term}}</div></td>
+          </ng-container>
+
+          <!-- สถานะ Column -->
+          <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef>สถานะ</th>
+            <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+              <a class="bg btn-warning btn-sm" (click)="openDialog('ทำการอนุมัติ', element)"><i class="fas fa-edit"></i>ทำการอนุมัติ</a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+    </main>
+  </div>
+</div>

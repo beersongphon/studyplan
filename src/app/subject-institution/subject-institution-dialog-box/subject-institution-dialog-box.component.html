@@ -1,0 +1,23 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Ins_ID">รหัสวิชา</label>
+    <input [(ngModel)]="local_data.Subject_Ins_ID" type="Subject_Ins_ID" class="form-control" id="Subject_Ins_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Ins_Name">ชื่อวิชา</label>
+    <input [(ngModel)]="local_data.Subject_Ins_Name" type="Subject_Ins_Name" class="form-control" id="Subject_Ins_Name">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Ins_Credit">หน่วยกิต</label>
+    <input [(ngModel)]="local_data.Subject_Ins_Credit" type="Subject_Ins_Credit" class="form-control" id="Subject_Ins_Credit">
+  </div>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.Subject_Ins_ID}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

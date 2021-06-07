@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-nav></app-nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+      <h2>ข้อมูลการเทียบโอนรายวิชา</h2>
+      <form #transferForm="ngForm" novalidate>
+        <div class="form-row align-item-center">
+          <div class="input-group mb-3">
+            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+            <div class="input-group">
+              <input #text="ngModel" ngModel name="txtSearch" type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="ค้นหา" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append" (click)="getTransfer(transferForm.value)">
+                <div class="input-group-text">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <button button mat-button (click)="openDialog('เพิ่ม', {})" mat-flat-button color="primary"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="table-responsive mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- ลำดับที่ Column -->
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef><div align = "center">ลำดับที่</div></th>
+            <td mat-cell *matCellDef="let element let i = index"><div align = "center">{{ i+1 }}</div></td>
+          </ng-container>
+
+          <!-- รหัสการเทียบโอน Column -->
+          <ng-container matColumnDef="Transfer_ID">
+            <th mat-header-cell *matHeaderCellDef width="100"><div align = "center">รหัสการเทียบโอน</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Transfer_ID}}</div></td>
+          </ng-container>
+
+          <!-- วันที่ Column -->
+          <ng-container matColumnDef="Date">
+            <th mat-header-cell *matHeaderCellDef>วันที่</th>
+            <td mat-cell *matCellDef="let element">{{element.Date}}</td>
+          </ng-container>
+
+          <!-- รหัสนักศึกษา Column -->
+          <ng-container matColumnDef="Student_ID">
+            <th mat-header-cell *matHeaderCellDef width="120"><div align = "center">รหัสนักศึกษา</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Student_ID}}</div></td>
+          </ng-container>
+
+          <!-- ชื่อนักศึกษา Column -->
+          <ng-container matColumnDef="Student_Name">
+            <th mat-header-cell *matHeaderCellDef width="160">ชื่อนักศึกษา</th>
+            <td mat-cell *matCellDef="let element">{{element.Student_Name}}</td>
+          </ng-container>
+
+          <!-- รหัสนักศึกษา Column -->
+          <ng-container matColumnDef="Subject_Ins_ID">
+            <th mat-header-cell *matHeaderCellDef width="130"><div align = "center">รหัสวิชาที่นำมาเทียบโอน</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Subject_Ins_ID}}</div></td>
+          </ng-container>
+
+          <!-- ชื่อวิชาเทียบโอน Column -->
+          <ng-container matColumnDef="Subject_Ins_Name">
+            <th mat-header-cell *matHeaderCellDef width="180"><div align = "center">ชื่อวิชาที่นำมาเทียบโอน</div></th>
+            <td mat-cell *matCellDef="let element">{{element.Subject_Ins_Name}}</td>
+          </ng-container>
+
+          <!-- หน่วยกิตเทียบโอน Column -->
+          <ng-container matColumnDef="Subject_Ins_Credit">
+            <th mat-header-cell *matHeaderCellDef><div align = "center">หน่วยกิต</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Subject_Ins_Credit}}</div></td>
+          </ng-container>
+
+          <!-- เกรด Column -->
+          <ng-container matColumnDef="Grade">
+            <th mat-header-cell *matHeaderCellDef width="70"><div align = "center">เกรด</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Grade}}</div></td>
+          </ng-container>
+
+          <!-- รหัสวิชาเทียบโอน Column -->
+          <ng-container matColumnDef="Subject_ID">
+            <th mat-header-cell *matHeaderCellDef width="130"><div align = "center">รหัสวิชาที่เทียบโอนได้</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Subject_ID}}</div></td>
+          </ng-container>
+
+          <!-- รหัสวิชา Column -->
+          <ng-container matColumnDef="Subject_Name">
+            <th mat-header-cell *matHeaderCellDef width="180">ชื่อวิชาที่เทียบโอนได้</th>
+            <td mat-cell *matCellDef="let element">{{element.Subject_Name}}</td>
+          </ng-container>
+
+          <!-- หน่วยกิต Column -->
+          <ng-container matColumnDef="Subject_Credit">
+            <th mat-header-cell *matHeaderCellDef width="70"><div align = "center">หน่วยกิต</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Subject_Credit}}</div></td>
+          </ng-container>
+
+          <!-- เกรดเทียบโอน Column -->
+          <ng-container matColumnDef="Transfer_Grade">
+            <th mat-header-cell *matHeaderCellDef>เกรดเทียบโอน</th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Transfer_Grade}}</div></td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+              <a class="bg btn-warning btn-sm" (click)="openDialog('แก้ไข', element)"><i class="fas fa-edit"></i></a> |
+              <a class="bg btn-danger btn-sm" (click)="openDialog2('ลบ', element)"><i class="fas fa-trash"></i></a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator
+          [pageIndex]="0"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+    </main>
+  </div>
+</div>

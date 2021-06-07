@@ -1,0 +1,14 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <mat-form-field *ngIf="action != 'ลบ'; else elseTemplate">
+    <input placeholder="รหัสวิชา" matInput [(ngModel)]="local_data.Subject_ID">
+  </mat-form-field>
+  <ng-template #elseTemplate>
+    คุณต้องการลบ <b>{{local_data.Subject_ID}}</b> หรือไม่?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

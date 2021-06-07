@@ -1,0 +1,39 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">รหัสวิชา</label>
+    <input [(ngModel)]="local_data.Subject_ID" type="Subject_ID" class="form-control" id="Subject_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Main_ID">ชื่อหมวดวิชา</label>
+    <select [(ngModel)]="local_data.Main_ID" class="form-control" id="Main_ID">
+      <option *ngFor="let local_data of main" [value]="local_data.Main_ID">{{ local_data.Main_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Group_ID">ชื่อกลุ่มวิชา</label>
+    <select [(ngModel)]="local_data.Group_ID" class="form-control" id="Group_ID">
+      <option *ngFor="let local_data of group" [value]="local_data.Group_ID">{{ local_data.Group_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Name">ชื่อวิชา</label>
+    <input [(ngModel)]="local_data.Subject_Name" type="Subject_Name" class="form-control" id="Subject_Name">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Credit">หน่วยกิต</label>
+    <input [(ngModel)]="local_data.Subject_Credit" type="Subject_Credit" class="form-control" id="Subject_Credit">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Detail">รายละเอียดรายวิชา</label>
+    <textarea [(ngModel)]="local_data.Subject_Detail" type="Subject_Detail" class="form-control" aria-label="With textarea" id="Subject_Detail"></textarea>
+  </div>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.Subject_ID}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

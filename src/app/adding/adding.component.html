@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-nav></app-nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+      <h2 align = "center">รายงานการเพิ่มถอนรายวิชา</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col"><div align="center">ลำดับที่</div></th>
+              <th scope="col">รหัสนักศึกษา</th>
+              <th scope="col">ชื่อนักศึกษา</th>
+              <th scope="col">รหัสวิชา</th>
+              <th scope="col">ชื่อวิชา</th>
+              <th scope="col">วันที่</th>
+              <th scope="col"><div align="center">ปีการศึกษา</div></th>
+              <th scope="col"><div align="center">เทอม</div></th>
+              <th scope="col">เพิ่ม/ถอน</th>
+              <th scope="col"><div align="center">แสดงใบการเพิ่ม ถอน รายวิชา</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of adding let i = index">
+              <td><div align="center">{{ i+1 }}</div></td>
+              <td>{{a.Student_ID}}</td>
+              <td>{{a.Student_Name}}</td>
+              <td>{{a.Subject_ID}}</td>
+              <td>{{a.Subject_Name}}</td>
+              <td>{{a.Date}}</td>
+              <td><div align="center">{{a.Year_Name}}</div></td>
+              <td><div align="center">{{a.Term}}</div></td>
+              <td>{{a.Add_Withdraw}}</td>
+              <td>
+                <div align="center">
+                  <a [routerLink]="['/adding',a.Add_With_ID,a.Student_Name]">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

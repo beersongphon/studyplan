@@ -1,0 +1,131 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active">
+              <span data-feather="home"></span>
+              หน้าหลัก <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/adding']" role="button">
+              <span data-feather="file"></span>
+              ย้อนกลับ
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+      <div id="print-me">
+        <div class="table-responsive">
+          <table *ngFor="let c of content; let i=index">
+            <table>
+              <thead>
+                <tr>
+                  <th width="120"><div align = "left"><img class="mb-4" [src]="logo" [width]="logoWidth" [height]="logoHeight" alt=""></div></th>
+                  <th><div align = "left">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร</div></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div align = "left"></div></td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tr>
+                <th width="120"colspan="3"><div align = "center"><h2><u>แบบขอ เพิ่ม / เปลี่ยน / ถอน / การลงทะเบียน</u></h2></div></th>
+              </tr>
+              <tr>
+                <th width="120"colspan="3"><div align = "center"><h2><u>Registration Adding / Changing / Withdrawn Form</u></h2></div></th>
+              </tr>
+              <tr>
+                <th width="1020"colspan="2"><div align = "right">วันที่ (Date)</div></th>
+                <td width="120"colspan="2"><div align = "right">{{c.Date}}</div></td>
+
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <th width="150"></th>
+                <th width="120">ข้าพเจ้า</th>
+                <td width="120" colspan="6">{{c.Student_Name}}</td>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <th width="220">รหัสประจําตัวนักศึกษา (Student ID)</th>
+                <td width="120">{{c.Student_ID}}</td>
+                <th width="160">ระดับ (Education Level)</th>
+                <td width="120">{{c.Edu_Level_Name}}</td>
+                <th width="90">ชั้นปี (Year)</th>
+                <td width="90">{{c.Year}}</td>
+              </tr>
+              <tr>
+                <th width="120">คณะ (Faculty)</th>
+                <td width="120"colspan="1">{{c.Faculty_Name}}</td>
+                <th width="120">สาขาวิชา (Field of Study)</th>
+                <td width="200"colspan="1">{{c.Brand_Name}} {{c.Field_of_Study_Name}}</td>
+              </tr>
+              <tr>
+                <th width="120">โทรศัพท์ (Tel.)</th>
+                <td width="120"colspan="1">{{c.Phone}}</td>
+                <th width="120">E-mail</th>
+                <td width="120"colspan="1">{{c.Email}}</td>
+              </tr>
+            </table>
+            <br><br>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td scope="col" valign="CENTER" width="100"><div align = "center">&nbsp;<b>ลําดับที่</b><br>&nbsp;(No.)</div></td>
+                  <td scope="col" valign="CENTER"><div align = "center">&nbsp;<b>รหัสวิชา</b><br>&nbsp;(Subject Code)</div></td>
+                  <td scope="col" valign="CENTER"><div align = "center">&nbsp;<b>ชื่อวิชา</b><br>&nbsp;(Subject Name)</div></td>
+                  <td scope="col" valign="CENTER"><div align = "center">&nbsp;<b>กลุ่มเรียน</b><br>&nbsp;(Sec.)</div></td>
+                  <td scope="col" valign="CENTER"><div align = "center">&nbsp;<b>อาจารย์ผู้สอน</b><br>&nbsp;(Instructor)</div></td>
+                  <td scope="col" valign="CENTER"><div align = "center">&nbsp;<b>ปีการศึกษา</b><br>&nbsp;(Year)</div></td>
+                  <td scope="col" valign="CENTER"><div align = "center">&nbsp;<b>หมายเหตุ</b><br>&nbsp; (Annotation)</div></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><div align="center">{{ i+1 }}</div></th>
+                  <td>{{c.Subject_ID}}</td>
+                  <td>{{c.Subject_Name}}</td>
+                  <td>{{c.Sec_Name}}</td>
+                  <td>{{c.Instructor}}</td>
+                  <td>{{c.Year_Name}}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tr>
+                <th width="120"></th>
+                <th width="120"></th>
+                <td width="238" valign="CENTER"><div align = "center">&nbsp;<b>ลงชื่อ</b> (Signature) {{c.Student_Name}} <b>นักศึกษา</b> (Student)</div><br><div align = "center">({{c.Student_Name}})</div></td>
+              </tr>
+            </table>
+            <table class="table table-bordered">
+              <tr>
+                <td><div align = "center"><div align = "center">&nbsp;<b>1. ความเห็นอาจารย์ที่ปรึกษา</b> (Comment from Advisor)</div><br>&nbsp; เห็นควรอนุมัติ(Agree to approve)<br>&nbsp; อื่นๆ ระบุ (etc. Please specify)……………………………………………..……<br>&nbsp; …………………………………………………………………………………………………. <br>&nbsp; <div align = "center"><b>ลงชื่อ</b> (Signature) {{c.Teacher_Name}} <br><br>&nbsp; ({{c.Teacher_Name}})<br>&nbsp; ……………/………………../………….</div></div></td>
+                <td><div align = "center"><div align = "center">&nbsp;<b>2. ความเห็นหัวหน้าสาขาวิชา</b> (Comment from Head, Field of Study)</div><br>&nbsp; เห็นควรอนุมัติ(Agree to approve)<br>&nbsp; อื่นๆ ระบุ (etc. Please specify)……………………………………………..……<br>&nbsp; …………………………………………………………………………………………………. <br>&nbsp; <div align = "center"><b>ลงชื่อ</b> (Signature)…………………………………………….. <br><br>&nbsp; (………………………………………………)<br>&nbsp; ……………/………………../………….</div></div></td>
+              </tr>
+              <tr>
+                <td colspan="2"><div align = "center"><div align = "center">&nbsp;<b>3. เจ้าหน้าที่การเงิน</b> (Financial Officer)</div><br>&nbsp; ได้รับชําระเงินแล้ว จํานวนเงิน (Already receive the payment in the amount)………………………บาท (Baht)<br>&nbsp; เล่มที่/เลขที่ใบเสร็จรับเงิน (Book / No. of Receipt) …………..................................................................<br>&nbsp; <div align = "center"><b>ลงชื่อ</b> (Signature)…………………………………………….. <br><br>&nbsp; (………………………………………………)<br>&nbsp; ……………/………………../………….</div></div></td>
+              </tr>
+            </table>
+          </table>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" printSectionId="print-me" [useExistingCss]="true" ngxPrint >พิมพ์รายงาน</button>
+    </main>
+  </div>
+</div>

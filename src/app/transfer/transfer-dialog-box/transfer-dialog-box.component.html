@@ -1,0 +1,67 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Date">วันที่</label>
+    <div class="input-group">
+      <input class="form-control" placeholder="dd/mm/yyyy" name="d2" [(ngModel)]="local_data.Date" ngbDatepicker #d2="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+        <button class="btn btn-sm btn-outline-primary" (click)="local_data.Date = today">วันนี้</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Student_ID">รหัสนักศึกษา</label>
+    <input [(ngModel)]="local_data.Student_ID" type="Student_ID" class="form-control" id="Student_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Student_ID">ชื่อนักศึกษา</label>
+    <select [(ngModel)]="local_data.Student_ID" class="form-control" id="Student_ID" disabled>
+      <option *ngFor="let local_data of student" [value]="local_data.Student_ID">{{ local_data.Student_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Ins_ID">รหัสวิชาที่นำมาเทียบโอน</label>
+    <input [(ngModel)]="local_data.Subject_Ins_ID" type="Subject_Ins_ID" class="form-control" id="Subject_Ins_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Ins_ID">ชื่อวิชาที่นำมาเทียบโอน</label>
+    <select [(ngModel)]="local_data.Subject_Ins_ID" class="form-control" id="Subject_Ins_ID" disabled>
+      <option *ngFor="let local_data of subjectinstitution" [value]="local_data.Subject_Ins_ID">{{ local_data.Subject_Ins_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_Ins_ID">หน่วยกิต</label>
+    <select [(ngModel)]="local_data.Subject_Ins_ID" class="form-control" id="Subject_Ins_ID" disabled>
+      <option *ngFor="let local_data of subjectinstitution" [value]="local_data.Subject_Ins_ID">{{ local_data.Subject_Ins_Credit }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Grade">เกรด</label>
+    <input [(ngModel)]="local_data.Grade" type="Grade" class="form-control" id="Grade">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">รหัสวิชาที่เทียบโอนได้</label>
+    <input [(ngModel)]="local_data.Subject_ID" type="Subject_ID" class="form-control" id="Subject_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">ชื่อวิชาที่เทียบโอนได้</label>
+    <select [(ngModel)]="local_data.Subject_ID" class="form-control" id="Subject_ID" disabled>
+      <option *ngFor="let local_data of subject" [value]="local_data.Subject_ID">{{ local_data.Subject_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">หน่วยกิต</label>
+    <select [(ngModel)]="local_data.Subject_ID" class="form-control" id="Subject_ID" disabled>
+      <option *ngFor="let local_data of subject" [value]="local_data.Subject_ID">{{ local_data.Subject_Credit }}</option>
+    </select>
+  </div>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.Transfer_ID}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

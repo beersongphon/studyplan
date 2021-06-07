@@ -1,0 +1,35 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Group_ID">รหัสกลุ่มวิชา</label>
+    <input [(ngModel)]="local_data.Group_ID" type="Group_ID" class="form-control" id="Group_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Main_ID">ชื่อหมวดวิชา</label>
+    <select [(ngModel)]="local_data.Main_ID" class="form-control" id="Main_ID">
+      <option *ngFor="let local_data of main" [value]="local_data.Main_ID">{{ local_data.Main_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Course_ID">ชื่อหลักสูตร</label>
+    <select [(ngModel)]="local_data.Course_ID" class="form-control" id="Course_ID">
+      <option *ngFor="let local_data of course" [value]="local_data.Course_ID">{{ local_data.Course_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Group_Name">ชื่อกลุ่มวิชา</label>
+    <input [(ngModel)]="local_data.Group_Name" type="Group_Name" class="form-control" id="Group_Name">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Group_Credit">หน่วยกิต</label>
+    <input [(ngModel)]="local_data.Group_Credit" type="Group_Credit" class="form-control" id="Group_Credit">
+  </div>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.Group_ID}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

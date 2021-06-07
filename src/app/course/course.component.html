@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-nav></app-nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+      <h2>ข้อมูลหลักสูตร</h2>
+      <form #courseForm="ngForm" novalidate>
+        <div class="form-row align-item-center">
+          <div class="input-group mb-3">
+            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+            <div class="input-group">
+              <input #text="ngModel" ngModel name="txtSearch" type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="ค้นหา" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append" (click)="getCourse(courseForm.value)">
+                <div class="input-group-text">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <button button mat-button (click)="openDialog('เพิ่ม', {})" mat-flat-button color="primary"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="table-responsive mat-elevation-z8">
+        <table mat-table #table [dataSource]="dataSource" matSort>
+          <!-- รหัสหลักสูตร Column -->
+          <ng-container matColumnDef="Course_ID">
+            <th mat-header-cell *matHeaderCellDef>รหัสหลักสูตร</th>
+            <td mat-cell *matCellDef="let element">{{element.Course_ID}}</td>
+          </ng-container>
+
+          <!-- ชื่อหลักสูตร Column -->
+          <ng-container matColumnDef="Course_Name">
+            <th mat-header-cell *matHeaderCellDef>ชื่อหลักสูตร</th>
+            <td mat-cell *matCellDef="let element">{{element.Course_Name}}</td>
+          </ng-container>
+
+          <!-- หน่วยกิตทั้งหมด Column -->
+          <ng-container matColumnDef="Course_Allcredit">
+            <th mat-header-cell *matHeaderCellDef><div align = "center">หน่วยกิตทั้งหมด</div></th>
+            <td mat-cell *matCellDef="let element"><div align = "center">{{element.Course_Allcredit}}</div></td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+              <a class="bg btn-warning btn-sm" (click)="openDialog('แก้ไข', element)"><i class="fas fa-edit"></i></a> |
+              <a class="bg btn-danger btn-sm" (click)="openDialog2('ลบ', element)"><i class="fas fa-trash"></i></a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator #paginator
+          [pageIndex]="0"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+    </main>
+  </div>
+</div>

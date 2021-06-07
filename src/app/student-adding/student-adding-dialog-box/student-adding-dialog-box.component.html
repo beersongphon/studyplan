@@ -1,0 +1,70 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Student_ID">รหัสนักศึกษา</label>
+    <input [(ngModel)]="local_data.Student_ID" type="Student_ID" class="form-control" id="Student_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Student_ID">ชื่อนักศึกษา</label>
+    <select [(ngModel)]="local_data.Student_ID" class="form-control" id="Student_ID" disabled>
+      <option *ngFor="let local_data of student" [value]="local_data.Student_ID">{{ local_data.Student_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Teacher_ID">อาจารย์ที่ปรึกษา</label>
+    <select [(ngModel)]="local_data.Teacher_ID" class="form-control" id="Teacher_ID" disabled>
+      <option *ngFor="let local_data of teacher" [value]="local_data.Teacher_ID">{{ local_data.Teacher_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Add_Withdraw">เพิ่ม/ถอน</label>
+    <select [(ngModel)]="local_data.Add_Withdraw" class="form-control" id="Add_Withdraw">
+      <option *ngFor="let local_data of addwithdraws" [value]="local_data.Add_Withdraw">{{ local_data.Add_Withdraw }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">รหัสวิชา</label>
+    <input [(ngModel)]="local_data.Subject_ID" type="Subject_ID" class="form-control" id="Subject_ID" (click)="local_data.Date = today">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">ชื่อวิชา</label>
+    <select [(ngModel)]="local_data.Subject_ID" class="form-control" id="Subject_ID" disabled>
+      <option *ngFor="let local_data of subject" [value]="local_data.Subject_ID">{{ local_data.Subject_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Subject_ID">หน่วยกิต</label>
+    <select [(ngModel)]="local_data.Subject_ID" class="form-control" id="Subject_ID" disabled>
+      <option *ngFor="let local_data of subject" [value]="local_data.Subject_ID">{{ local_data.Subject_Credit }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Date">วันที่</label>
+    <div class="input-group">
+      <input class="form-control" name="d2" [(ngModel)]="local_data.Date" ngbDatepicker #d2="ngbDatepicker" disabled>
+    </div>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Instructor">อาจารย์ผู้สอน</label>
+    <input [(ngModel)]="local_data.Instructor" type="Instructor" class="form-control" id="Instructor">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Year_ID">ปีการศึกษา</label>
+    <select [(ngModel)]="local_data.Year_ID" ngModel name="Year_ID" class="form-control" id="Year_ID">
+      <option *ngFor="let local_data of year" [value]="local_data.Year_ID">{{ local_data.Year_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Term">เทอม</label>
+    <input [(ngModel)]="local_data.Term" type="Term" class="form-control" id="Term">
+  </div>
+
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.Subject_ID}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

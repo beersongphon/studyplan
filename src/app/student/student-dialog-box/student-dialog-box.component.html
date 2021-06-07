@@ -1,0 +1,81 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="User_ID">รหัสนักศึกษา</label>
+    <input [(ngModel)]="local_data.User_ID" type="User_ID" class="form-control" id="User_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="User_Name">ชื่อ - นามสกุล</label>
+    <input [(ngModel)]="local_data.User_Name" type="User_Name" class="form-control" id="User_Name">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Edu_Level_ID">ระดับ</label>
+    <select [(ngModel)]="local_data.Edu_Level_ID" class="form-control" id="Edu_Level_ID">
+      <option *ngFor="let local_data of educationlevel" [value]="local_data.Edu_Level_ID">{{ local_data.Edu_Level_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Year">ชั้นปี</label>
+    <input [(ngModel)]="local_data.Year" type="number" min="1" max="8" class="form-control" id="Year">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Faculty_ID">คณะ</label>
+    <select [(ngModel)]="local_data.Faculty_ID" class="form-control" id="Faculty_ID">
+      <option *ngFor="let local_data of faculty" [value]="local_data.Faculty_ID">{{ local_data.Faculty_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Brand_ID">สาขาวิชา</label>
+    <select [(ngModel)]="local_data.Brand_ID" class="form-control" id="Brand_ID">
+      <option *ngFor="let local_data of brand" [value]="local_data.Brand_ID">{{ local_data.Brand_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Field_of_Study_ID">แขนงวิชา</label>
+    <select [(ngModel)]="local_data.Field_of_Study_ID" class="form-control" id="Field_of_Study_ID">
+      <option *ngFor="let local_data of fieldofstudy" [value]="local_data.Field_of_Study_ID">{{ local_data.Field_of_Study_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Sec_ID">กลุ่ม</label>
+    <select [(ngModel)]="local_data.Sec_ID" class="form-control" id="Sec_ID">
+      <option *ngFor="let local_data of sec" [value]="local_data.Sec_ID">{{ local_data.Sec_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Teacher_ID">อาจารย์ที่ปรึกษา</label>
+    <select [(ngModel)]="local_data.Teacher_ID" class="form-control" id="Teacher_ID">
+      <option *ngFor="let local_data of teacher" [value]="local_data.Teacher_ID">{{ local_data.Teacher_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Institution_ID">ชื่อสถาบันเดิม</label>
+    <select [(ngModel)]="local_data.Institution_ID" class="form-control" id="Institution_ID">
+      <option *ngFor="let local_data of institution" [value]="local_data.Institution_ID">{{ local_data.Institution_Name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Address">ที่อยู่</label>
+    <textarea [(ngModel)]="local_data.Address" type="Address" class="form-control" aria-label="With textarea" id="Address"></textarea>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Phone">เบอร์โทรศัพท์</label>
+    <input [(ngModel)]="local_data.Phone" type="Phone" class="form-control" id="Phone">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Email">อีเมล</label>
+    <input [(ngModel)]="local_data.Email" type="Email" class="form-control" id="Email">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Password">รหัสผ่าน</label>
+    <input [(ngModel)]="local_data.Password" type="Password" class="form-control" id="Password">
+  </div>
+  <ng-template #elseTemplate>
+    คุณต้องการลบ <b>{{local_data.Student_ID}}</b> หรือไม่?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>

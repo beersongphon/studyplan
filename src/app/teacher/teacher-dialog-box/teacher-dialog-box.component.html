@@ -1,0 +1,35 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="User_ID">รหัสอาจารย์</label>
+    <input [(ngModel)]="local_data.User_ID" type="User_ID" class="form-control" id="User_ID">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="User_Name">ชื่อ - นามสกุล</label>
+    <input [(ngModel)]="local_data.User_Name" type="User_Name" class="form-control" id="User_Name">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Address">ที่อยู่</label>
+    <textarea [(ngModel)]="local_data.Address" type="Address" class="form-control" aria-label="With textarea" id="Address"></textarea>
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Phone">เบอร์โทรศัพท์</label>
+    <input [(ngModel)]="local_data.Phone" type="Phone" class="form-control" id="Phone">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Email">อีเมล</label>
+    <input [(ngModel)]="local_data.Email" type="Email" class="form-control" id="Email">
+  </div>
+  <div class="form-group" *ngIf="action != 'ลบ'; else elseTemplate">
+    <label for="Password">รหัสผ่าน</label>
+    <input [(ngModel)]="local_data.Password" type="Password" class="form-control" id="Password">
+  </div>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.Teacher_ID}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">บันทึก</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">ยกเลิก</button>
+</div>
