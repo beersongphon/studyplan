@@ -86,6 +86,7 @@ export class ApiService {
     return false;
   }
 
+  
   logout(): void {
     localStorage.clear();
   }
