@@ -71,10 +71,6 @@ export class ApiService {
     localStorage.removeItem('userlevel_id');
   }
 
-  log(): void {
-
-  }
-
   //รับค่า Userlevel
   getUserlevel(): string {
     return localStorage.getItem('userlevel_id');
