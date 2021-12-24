@@ -2,27 +2,30 @@
   header('Access-Control-Allow-Origin: *');
 
   include('./db_connect.php');
-  $sql="SELECT * FROM transfer";
+
+  $id=$_GET["id"];
+
+  $sql="SELECT
+  transfer_detail.Subject_ID,
+  subject.Subject_Name,
+  transfer_detail.Student_ID,
+  student.Student_Name,
+  sec.Sec_Name
+  FROM
+  transfer_detail
+  INNER JOIN student
+  ON student.Student_ID = transfer_detail.Student_ID
+  INNER JOIN sec
+  ON sec.Sec_ID = student.Sec_ID
+  INNER JOIN subject
+  ON subject.Subject_ID = transfer_detail.Subject_ID";
+
   if(isset($_GET['id'])){
-    $sql .= " WHERE transfer.Subject_ID='$empid'";
+    $sql .= " WHERE transfer_detail.Subject_ID='$id'";
   }
 
-  $sql = "SELECT DISTINCT
-    transfer_detail.Subject_ID,
-	subject.Subject_Name,
-    COUNT(transfer_detail.Student_ID) AS Student_ID
-    FROM
-    transfer_detail
-	INNER JOIN student
-	ON student.Student_ID = transfer_detail.Student_ID
-	INNER JOIN subject
-	ON subject.Subject_ID = transfer_detail.Subject_ID
-	WHERE student.Teacher_ID = '$auth'
-    GROUP BY Subject_ID
-	ORDER BY Student_ID DESC";
-
-
-  if ($result = mysqli_query($mysqli, $sql)) {
+  $sql .= " ORDER BY Student_ID DESC";
+  if ($result = mysqli_query($conn, $sql)) {
     $rows = array();
     while ($row = mysqli_fetch_assoc($result)) {
       $rows[] = $row;
