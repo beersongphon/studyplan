@@ -3,6 +3,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from './../../environments/environment';
 
 export class Users {
   public id_user: number;
@@ -19,8 +20,6 @@ export class Users {
 export class ApiService {
 
   redirectUrl: string | undefined;
-  //กำหนด URL apiUrl ที่ต้องการเข้าสู่ระบบ
-  apiUrl: string = "http://localhost/api";
   //registerUrl: string = "http://localhost/api/register.php";
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
@@ -34,7 +33,7 @@ export class ApiService {
       'email': loginForm.email,
       'password': loginForm.password
     };
-    return this.http.post<any>(this.apiUrl + '/api_login.php', body, { headers: loginHeader })
+    return this.http.post<any>(environment.apiUrl + '/api_login.php', body, { headers: loginHeader })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -47,7 +46,7 @@ export class ApiService {
       'email': loginForm.email,
       'password': loginForm.password
     };
-    return this.http.post<any>(this.apiUrl + '/api_login_2.php', body, { headers: loginHeader }).pipe(
+    return this.http.post<any>(environment.apiUrl + '/api_login_2.php', body, { headers: loginHeader }).pipe(
       map(
         (Users) => {
           this.setToken(Users[0].User_ID, Users[0].Userlevel_ID);

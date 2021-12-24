@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TeacherAddingService } from '../shared/teacher-adding.service';
 import { NgbCalendar, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { AddWithdraw } from '../shared/addwithdraw.model';
+import { AddWithdraw } from '../shared/adding.model';
 
 export interface AddingsData {
   name: string;

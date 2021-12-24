@@ -4,7 +4,7 @@ import { ApiService } from './../shared/api.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
-import { CourseTransfer } from './shared/coursetransfer.model';
+import { CourseTransfer } from './shared/transfer.model';
 
 @Component({
   selector: 'app-transfers',
