@@ -5,8 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
-import { Adding } from '../adding/shared/adding.model';
-import { Student } from '../adding/shared/student.model';
+import { Adding, Student } from '../adding/shared/adding.model';
 
 @Component({
   selector: 'app-report-adding',

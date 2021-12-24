@@ -1,8 +1,7 @@
 import { Component, Inject, Optional, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { GroupMainService } from './../shared/group-main.service';
-import { CourseService } from './../shared/course.service';
+import { SubjectGroupService } from './../shared/subject-group.service';
 
 export interface GroupsData {
   name: string;
@@ -24,8 +23,7 @@ export class SubjectGroupDialogBoxComponent implements OnInit, OnDestroy {
   action: string;
   local_data: any;
 
-  constructor(private courseService: CourseService,
-    private groupmainService: GroupMainService,
+  constructor(private subjectgroupService: SubjectGroupService,
     public dialogRef: MatDialogRef<SubjectGroupDialogBoxComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: GroupsData) {
@@ -40,7 +38,7 @@ export class SubjectGroupDialogBoxComponent implements OnInit, OnDestroy {
   }
 
   getMain(): void{
-    this.sub = this.groupmainService.getMain().subscribe(
+    this.sub = this.subjectgroupService.getMain().subscribe(
       (mains) => {
         this.main = this.main.concat(mains);
       }
@@ -48,7 +46,7 @@ export class SubjectGroupDialogBoxComponent implements OnInit, OnDestroy {
   }
 
   getCourse(): void{
-    this.sub = this.courseService.getCourse().subscribe(
+    this.sub = this.subjectgroupService.getCourse().subscribe(
       (courses) => {
         this.course = this.course.concat(courses);
       }

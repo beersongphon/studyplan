@@ -8,16 +8,14 @@ import { Structure } from './structure.model';
 })
 export class StructureService {
 
-  //กำหนด URL getStructureUrl ที่ต้องการดึงข้อมูลหลักสูตร
-  getStructureUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_structure.php';
-  //กำหนด URL getStructureContentUrl ที่ต้องการดึงข้อมูลโครงสร้างหลักสูตร
-  getStructureContentUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_structure_contents.php';
+  //กำหนด URL apiUrl ที่ต้องการดึงข้อมูลอื่นๆ
+  apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient) { }
 
   //สร้าง function สำหรับเรียกข้อมูลหลักสูตร
   getStructure(): Observable<Structure[]>{
-    return this.http.get<Structure[]>(this.getStructureUrl);
+    return this.http.get<Structure[]>(this.apiUrl + '/api_get_structure.php');
   }
 
   //สร้าง function สำหรับเรียกข้อมูลโครงสร้างหลักสูตร
@@ -25,6 +23,6 @@ export class StructureService {
     const p = {
       'id': id.toString()
     };
-    return this.http.get<any[]>(this.getStructureContentUrl, { params: p });
+    return this.http.get<any[]>(this.apiUrl + '/api_get_structure_contents.php', { params: p });
   }
 }

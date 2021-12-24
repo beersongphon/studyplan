@@ -87,6 +87,7 @@ import { ReportTransfersComponent } from './report-transfers/report-transfers.co
 import { StructureComponent } from './structure/structure.component';
 import { ReportStructureComponent } from './report-structure/report-structure.component';
 import { ReportTransferSecComponent } from './report-transfer-sec/report-transfer-sec.component';
+import { ListnameTransferComponent } from './listname-transfer/listname-transfer.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AdtobePipe } from './shared/adtobe.pipe';
 import { HeaderComponent } from './header/header.component';
@@ -138,6 +139,7 @@ import { NavComponent } from './nav/nav.component';
     ReportTransferSecComponent,
     AddingComponent,
     AddingsComponent,
+    ListnameTransferComponent,
     PagenotfoundComponent,
     AdtobePipe,
     HeaderComponent,

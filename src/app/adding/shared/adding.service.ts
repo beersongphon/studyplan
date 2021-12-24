@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Adding } from './adding.model';
-import { Student } from './student.model';
+import { Adding, Student } from './adding.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddingService {
 
-  //กำหนด URL getAddingUrl ที่ต้องการดึงข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
-  getAddingUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_adding_where_id.php';
-  //กำหนด URL getAddingContentUrl ที่ต้องการดึงข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
-  getAddingContentUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_adding_contents.php';
-
-  //กำหนด URL apiGetStudent ที่ต้องการดึงข้อมูลนักศึกษา
-  apiGetStudent = 'http://web.rmutp.ac.th/bus/studyplan/api/api_show_student.php';
+  //กำหนด URL apiUrl ที่ต้องการดึงข้อมูลอื่นๆ
+  apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient) { }
 
@@ -27,13 +21,13 @@ export class AddingService {
   //สร้าง function สำหรับเรียกข้อมูลนักศึกษา
   getStudent(): Observable<Student[]>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<Student[]>(this.apiGetStudent, { headers: apiHeader });
+    return this.http.get<Student[]>(this.apiUrl + '/api_show_student.php', { headers: apiHeader });
   }
 
   //สร้าง function สำหรับเรียกจำนวนข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
   getAdding(): Observable<Adding[]>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<Adding[]>(this.getAddingUrl, { headers: apiHeader });
+    return this.http.get<Adding[]>(this.apiUrl + '/api_get_adding_where_id.php', { headers: apiHeader });
   }
 
   //สร้าง function สำหรับเรียกข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
@@ -41,6 +35,6 @@ export class AddingService {
     const p = {
       'id': id.toString()
     };
-    return this.http.get<any[]>(this.getAddingContentUrl, { params: p });
+    return this.http.get<any[]>(this.apiUrl + '/api_get_adding_contents.php', { params: p });
   }
 }

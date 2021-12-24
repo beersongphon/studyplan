@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AddingsService {
 
-  //กำหนด URL apiGetAdding ที่ต้องการดึงข้อมูลการเพิ่มถอน
-  apiGetAdding = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_adding_student_where_id.php';
+  //กำหนด URL apiUrl ที่ต้องการดึงข้อมูลอื่นๆ
+  apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient) { }
 
@@ -20,13 +20,12 @@ export class AddingsService {
   //สร้าง function สำหรับเรียกข้อมูลเพิ่ม ถอน สำหรับนักศึกษา
   getAddings(): Observable<any[]>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<any>(this.apiGetAdding, { headers: apiHeader });
+    return this.http.get<any>(this.apiUrl + '/api_get_adding_student_where_id.php', { headers: apiHeader });
   }
 
   //สร้าง function สำหรับเรียกข้อมูลเพิ่ม ถอน ทั้งหมด สำหรับนักศึกษา
   getAdding(formValue: any): Observable<any[]>{
     const apiHeader = { 'Content-Type': 'application/json' };
-    return this.http.post<any>(this.apiGetAdding, formValue, { headers: apiHeader });
+    return this.http.post<any>(this.apiUrl + '/api_get_adding_student_where_id.php', formValue, { headers: apiHeader });
   }
-
 }

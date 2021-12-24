@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../shared/api.service';
 import { Title } from '@angular/platform-browser';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,16 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  isLogin = false;
+  loginForm = this.fb.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.minLength(8), Validators.required]],
+  });
+  subLogin: Subscription | undefined;
+  isLogin: boolean = false;
+  profile: any;
+
+  loginbtn: boolean;
+  logoutbtn: boolean;
 
   //โลโก้
   logo = './assets/image/IS.png';
@@ -29,10 +38,6 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private router: Router) {
 
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(5)]]
-    });
   }
 
   ngOnInit() {
@@ -41,9 +46,30 @@ export class LoginComponent implements OnInit {
   }
 
   //เข้าสู่ระบบ
-  login(angForm1: { value: { email: any; password: any; }; }) {
-    this.apiService.userlogin(angForm1.value.email, angForm1.value.password).pipe(first()).subscribe(
-      (data) => {
+  // login() : void {
+  //   //console.log(this.loginForm.value);
+  //   this.subLogin = this.loginService.login(this.loginForm.value).subscribe(
+  //     (token) => {
+  //       alert(token.message);
+  //       if(token.data){
+  //         localStorage.setItem('data', JSON.stringify(token.data));
+  //         localStorage.setItem('level', (token.level));
+  //         this.isLogin = true;
+  //         this.profile = token.data;
+  //         this.profile.image = '../../assets/images/user.png';
+  //       }
+  //     },
+  //     (error) => {
+  //       alert(error.name);
+  //     }
+  //   );
+  // }
+
+  login(): void {
+    console.log(this.loginForm.value);
+    this.subLogin = this.apiService.userlogin(this.loginForm.value).subscribe(
+      (token) => {
+        alert(token.message);
         Swal.fire({
           icon: 'success',
           title: 'เข้าสู่ระบบเรียบร้อย',
@@ -66,6 +92,37 @@ export class LoginComponent implements OnInit {
         console.log(error)
       }
     );
+  }
+  // login(angForm1: { value: { email: any; password: any; }; }) {
+  //   this.apiService.userlogin(angForm1.value.email, angForm1.value.password).pipe(first()).subscribe(
+  //     (data) => {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'เข้าสู่ระบบเรียบร้อย',
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       }).then((result) => {
+  //         if (result.isDismissed) {
+  //           const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/home';
+  //           this.router.navigate([redirect]);
+  //         }
+  //       });
+  //     },
+  //     (error) => {
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Email หรือ Password ไม่ถูกต้อง',
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       })
+  //       console.log(error)
+  //     }
+  //   );
+  // }
+
+  setToken(data: string, UserLevel_ID: string): void {
+    localStorage.setItem('data', JSON.stringify(data));
+    localStorage.setItem('userlevel_id', JSON.stringify(UserLevel_ID));
   }
 
   //รับค่า email

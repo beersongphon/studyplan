@@ -8,8 +8,8 @@ import { CourseTransfer } from './coursetransfer.model';
 })
 export class TransfersService {
 
-  //กำหนด URL getCourseTransferUrl ที่ต้องการดึงข้อมูลการเทียบโอน สำหรับนักศึกษา
-  getCourseTransferUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_coursetransfer_student.php';
+  //กำหนด URL apiUrl ที่ต้องการดึงข้อมูลการเทียบโอน สำหรับนักศึกษา
+  apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +21,6 @@ export class TransfersService {
   //สร้าง function สำหรับเรียกข้อมูลการเทียบโอน สำหรับนักศึกษา
   getCoursetransfer(): Observable<CourseTransfer[]>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<CourseTransfer[]>(this.getCourseTransferUrl ,{ headers: apiHeader });
+    return this.http.get<CourseTransfer[]>(this.apiUrl + '/api_get_coursetransfer_student.php', { headers: apiHeader });
   }
 }

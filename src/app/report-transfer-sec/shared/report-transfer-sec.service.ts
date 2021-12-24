@@ -8,8 +8,8 @@ import { ReportTransferSec } from './report-transfer-sec.model';
 })
 export class ReportTransferSecService {
 
-  //กำหนด URL getTransferUrl ที่ต้องการดึงข้อมูลการเทียบโอนรายวิชา
-  getTransferUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_reporttransfer_sec.php';
+  //กำหนด URL apiUrl ที่ต้องการดึงข้อมูลอื่นๆ
+  apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +21,14 @@ export class ReportTransferSecService {
   //สร้าง function สำหรับเรียกจำนวนข้อมูลการเทียบโอนรายวิชา
   getCoursetransfer(): Observable<ReportTransferSec[]>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<ReportTransferSec[]>(this.getTransferUrl, { headers: apiHeader });
+    return this.http.get<ReportTransferSec[]>(this.apiUrl + '/api_get_reporttransfer_sec.php', { headers: apiHeader });
+  }
+
+  //สร้าง function สำหรับเรียกข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
+  getTransfer(id: string): Observable<any[]>{
+    const p = {
+      'id': id.toString()
+    };
+    return this.http.get<any[]>(this.apiUrl + '/api_get_listname_transfer.php', { params: p });
   }
 }
