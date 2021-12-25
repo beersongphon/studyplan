@@ -75,4 +75,31 @@ export class ListnameTransferComponent implements OnInit {
       }
     );
   }
+
+  //แบ่งสิทธิ์สำหรับทุกระดับผู้ใช้
+  isLogin() {
+    if (this.apiService.isLoggedIn) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  //แบ่งสิทธิ์สำหรับผู้ดูแลระบบ
+  isAdmin() {
+    if (this.apiService.getUserlevel() == '1') {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  //แบ่งสิทธิ์สำหรับอาจารย์ที่ปรึกษา
+  isTeacher() {
+    if (this.apiService.getUserlevel() == '3') {
+      return true
+    } else {
+      return false
+    }
+  }
 }
