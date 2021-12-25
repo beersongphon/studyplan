@@ -46,62 +46,61 @@ export class LoginComponent implements OnInit {
   }
 
   //เข้าสู่ระบบ
-  login(): void {
-    console.log(this.loginForm.value);
-    this.subLogin = this.apiService.login(this.loginForm.value).subscribe(
-      (token) => {
-        Swal.fire({
-          title: (token.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            if (token.data) {
-              localStorage.setItem('token', (token.data));
-              localStorage.setItem('userlevel_id', (token.userlevel_id));
-              this.isLogin = true;
-              const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/home';
-              this.router.navigate([redirect]);
-              // this.profile = token.data;
-              // this.profile.image = '../../assets/image/user.png';
-            }
-          }
-        });
-      },
-      (error) => {
-        alert(error.name);
-      }
-    );
-  }
-
   // login(): void {
   //   console.log(this.loginForm.value);
-  //   this.subLogin = this.apiService.userlogin(this.loginForm.value).subscribe(
+  //   this.subLogin = this.apiService.login(this.loginForm.value).subscribe(
   //     (token) => {
-  //       alert(token.message);
   //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'เข้าสู่ระบบเรียบร้อย',
+  //         title: (token.message),
   //         showConfirmButton: false,
   //         timer: 1500
   //       }).then((result) => {
   //         if (result.isDismissed) {
-  //           const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/home';
-  //           this.router.navigate([redirect]);
+  //           if (token.data) {
+  //             localStorage.setItem('token', (token.data));
+  //             localStorage.setItem('userlevel_id', (token.userlevel_id));
+  //             this.isLogin = true;
+  //             const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/home';
+  //             this.router.navigate([redirect]);
+  //             // this.profile = token.data;
+  //             // this.profile.image = '../../assets/image/user.png';
+  //           }
   //         }
   //       });
   //     },
   //     (error) => {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Email หรือ Password ไม่ถูกต้อง',
-  //         showConfirmButton: false,
-  //         timer: 1500
-  //       })
-  //       console.log(error)
+  //       alert(error.name);
   //     }
   //   );
   // }
+
+  login(): void {
+    console.log(this.loginForm.value);
+    this.subLogin = this.apiService.userlogin(this.loginForm.value).subscribe(
+      (token) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'เข้าสู่ระบบเรียบร้อย',
+          showConfirmButton: false,
+          timer: 1500
+        }).then((result) => {
+          if (result.isDismissed) {
+            const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/home';
+            this.router.navigate([redirect]);
+          }
+        });
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Email หรือ Password ไม่ถูกต้อง',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log(error)
+      }
+    );
+  }
 
   // login(angForm1: { value: { email: any; password: any; }; }) {
   //   this.apiService.userlogin(angForm1.value.email, angForm1.value.password).pipe(first()).subscribe(
