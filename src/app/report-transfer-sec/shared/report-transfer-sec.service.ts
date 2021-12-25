@@ -23,9 +23,10 @@ export class ReportTransferSecService {
   }
 
   //สร้าง function สำหรับเรียกข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
-  getTransfer(id: string): Observable<any[]>{
+  getTransfer(id: string, title: string): Observable<any[]>{
     const p = {
-      'id': id.toString()
+      'id': id.toString(),
+      'title' : title
     };
     return this.http.get<any[]>(environment.apiUrl + '/api_get_listname_transfer.php', { params: p });
   }

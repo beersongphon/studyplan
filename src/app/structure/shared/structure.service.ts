@@ -17,9 +17,10 @@ export class StructureService {
   }
 
   //สร้าง function สำหรับเรียกข้อมูลโครงสร้างหลักสูตร
-  getStructureContent(id: number): Observable<any[]>{
+  getStructureContent(id: number, title: string): Observable<any[]>{
     const p = {
-      'id': id.toString()
+      'id': id.toString(),
+      'title' : title
     };
     return this.http.get<any[]>(environment.apiUrl + '/api_get_structure_contents.php', { params: p });
   }

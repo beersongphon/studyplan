@@ -61,17 +61,17 @@ export class ListnameTransferComponent implements OnInit {
     //แสดงชื่อแท็บของเว็บไซค์
     this.titleQ.setTitle('โครงสร้างหลักสูตร');
     this.id = this.route.snapshot.paramMap.get('id');
-    this.title = this.route.snapshot.paramMap.get('title');
+    this.title = this.route.snapshot.paramMap.get('title') ||'';
     //เรียก function getStructureContent เมื่อ App เริ่มทำงาน
     this.getTransfer();
   }
 
   //รับข้อมูลโครงสร้างหลักสูตร
   getTransfer(): void{
-    this.reportTransferSec.getTransfer(this.id).subscribe(
+    this.reportTransferSec.getTransfer(this.id, this.title).subscribe(
       (contents) => {
         //console.log(contents);
-        this.content = contents;
+        this.content = contents['data'];
       }
     );
   }
