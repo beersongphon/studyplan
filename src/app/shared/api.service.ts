@@ -12,7 +12,7 @@ export class Users {
   public password: string;
   public position: string;
 
-  }
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -33,11 +33,10 @@ export class ApiService {
       'email': loginForm.email,
       'password': loginForm.password
     };
-    return this.http.post<any>(environment.apiUrl + '/api_login.php', body, { headers: loginHeader })
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
+    return this.http.post<any>(environment.apiUrl + '/api_login.php', body, { headers: loginHeader }).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
   }
 
   userlogin(loginForm: any): Observable<any> {
