@@ -7,3 +7,8 @@ export interface Adding {
   Date: string;
   Status: string;
 }
+
+export interface Student {
+  Student_ID: string;
+  Student_Name: string;
+}

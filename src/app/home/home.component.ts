@@ -4,17 +4,8 @@ import { ApiService } from './../shared/api.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
-import { User } from './shared/user.model';
-import { Course } from './shared/course.model';
-import { SubjectGroup } from './shared/subject-group.model';
-import { Subject } from './shared/subject.model';
-import { Institution } from './shared/institution.model';
-import { Adding } from './shared/adding.model';
-import { Transfer } from './shared/transfer.model';
-import { Addings } from './shared/adding.model';
-import { SubjectInstitution } from './shared/subjectinstitution.model';
-import { Student } from './shared/student.model';
-import { Teacher } from './shared/teacher.model';
+import { User, Student, Teacher, Course, SubjectGroup, Subject, Institution, Adding, Transfer, Addings, SubjectInstitution } from './shared/home.model';
+
 
 @Component({
   selector: 'app-home',

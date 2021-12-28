@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CourseTransfer } from './coursetransfer.model';
+import { CourseTransfer } from './transfer.model';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransfersService {
-
-  //กำหนด URL getCourseTransferUrl ที่ต้องการดึงข้อมูลการเทียบโอน สำหรับนักศึกษา
-  getCourseTransferUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_coursetransfer_student.php';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +19,6 @@ export class TransfersService {
   //สร้าง function สำหรับเรียกข้อมูลการเทียบโอน สำหรับนักศึกษา
   getCoursetransfer(): Observable<CourseTransfer[]>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<CourseTransfer[]>(this.getCourseTransferUrl ,{ headers: apiHeader });
+    return this.http.get<CourseTransfer[]>(environment.apiUrl + '/api_get_coursetransfer_student.php', { headers: apiHeader });
   }
 }

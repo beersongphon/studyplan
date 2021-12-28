@@ -4,7 +4,7 @@ import { ApiService } from './../shared/api.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { User } from './shared/user.model';
+import { User } from './shared/header.model';
 
 @Component({
   selector: 'app-header',

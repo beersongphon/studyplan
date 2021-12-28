@@ -2,29 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Structure } from './structure.model';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StructureService {
 
-  //กำหนด URL getStructureUrl ที่ต้องการดึงข้อมูลหลักสูตร
-  getStructureUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_structure.php';
-  //กำหนด URL getStructureContentUrl ที่ต้องการดึงข้อมูลโครงสร้างหลักสูตร
-  getStructureContentUrl = 'http://web.rmutp.ac.th/bus/studyplan/api/api_get_structure_contents.php';
-
   constructor(private http: HttpClient) { }
 
   //สร้าง function สำหรับเรียกข้อมูลหลักสูตร
   getStructure(): Observable<Structure[]>{
-    return this.http.get<Structure[]>(this.getStructureUrl);
+    return this.http.get<Structure[]>(environment.apiUrl + '/api_get_structure.php');
   }
 
   //สร้าง function สำหรับเรียกข้อมูลโครงสร้างหลักสูตร
-  getStructureContent(id: number): Observable<any[]>{
+  getStructureContent(id: number, title: string): Observable<any[]>{
     const p = {
-      'id': id.toString()
+      'id': id.toString(),
+      'title' : title
     };
-    return this.http.get<any[]>(this.getStructureContentUrl, { params: p });
+    return this.http.get<any[]>(environment.apiUrl + '/api_get_structure_contents.php', { params: p });
   }
 }

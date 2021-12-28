@@ -11,7 +11,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { StudentAddingDialogBoxComponent } from './student-adding-dialog-box/student-adding-dialog-box.component';
 import { StudentAddingDeleteDialogBoxComponent } from './student-adding-delete-dialog-box/student-adding-delete-dialog-box.component';
 
-import { Student } from './shared/student.model';
+import { Student } from './shared/adding.model';
 
 export interface AddingData {
   Add_With_ID: string;

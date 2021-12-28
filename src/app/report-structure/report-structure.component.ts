@@ -61,17 +61,17 @@ export class ReportStructureComponent implements OnInit {
     //แสดงชื่อแท็บของเว็บไซค์
     this.titleQ.setTitle('โครงสร้างหลักสูตร');
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.title = this.route.snapshot.paramMap.get('title');
+    this.title = this.route.snapshot.paramMap.get('title') ||'';
     //เรียก function getStructureContent เมื่อ App เริ่มทำงาน
     this.getStructureContent();
   }
 
   //รับข้อมูลโครงสร้างหลักสูตร
   getStructureContent(): void{
-    this.structureService.getStructureContent(this.id).subscribe(
+    this.structureService.getStructureContent(this.id, this.title).subscribe(
       (contents) => {
         //console.log(contents);
-        this.content = contents;
+        this.content  = contents['data'];
       }
     );
   }

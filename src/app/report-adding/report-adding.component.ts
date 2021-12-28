@@ -5,8 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
-import { Adding } from '../adding/shared/adding.model';
-import { Student } from '../adding/shared/student.model';
+import { Adding, Student } from '../adding/shared/adding.model';
 
 @Component({
   selector: 'app-report-adding',
@@ -59,7 +58,7 @@ export class ReportAddingComponent implements OnInit {
     //แสดงชื่อแท็บของเว็บไซค์
     this.titleQ.setTitle('ใบเพิ่มถอน');
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.title = this.route.snapshot.paramMap.get('title');
+    this.title = this.route.snapshot.paramMap.get('title') ||'';
     //เรียก function getStudent เมื่อ App เริ่มทำงาน
     this.getStudent();
     //เรียก function getAddingContent เมื่อ App เริ่มทำงาน

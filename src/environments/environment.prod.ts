@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: '//web.rmutp.ac.th/bus/studyplan/api'
 };

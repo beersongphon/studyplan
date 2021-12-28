@@ -1,5 +1,5 @@
 <body class="text-center">
-  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm)" autocomplete="off" >
+  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off" >
     <img class="mb-4" [src]="logo" [width]="logoWidth" [height]="logoHeight" alt="">
     <h1 class="h3 mb-3 font-weight-normal">เข้าสู่ระบบ</h1>
     <label for="inputEmail" class="sr-only">อีเมล</label>
@@ -10,4 +10,15 @@
     </div>
     <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">เข้าสู่ระบบ</button>
   </form>
+  <!-- <form *ngIf="!isLogin" [formGroup]="loginForm" (ngSubmit)="login()" class="form-signin" autocomplete="off" >
+    <img class="mb-4" [src]="logo" [width]="logoWidth" [height]="logoHeight" alt="">
+    <h1 class="h3 mb-3 font-weight-normal">เข้าสู่ระบบ</h1>
+    <label for="inputEmail" class="sr-only">อีเมล</label>
+    <input formControlName="email" name="txtUsername" class="form-control mr-sm-2" type="email" placeholder="อีเมล" required autofocus>
+    <label for="inputPassword" class="sr-only">รหัสผ่าน</label>
+    <input type="password" name="txtPassword" formControlName="password"  autocomplete="off" class="form-control input-sm" placeholder="รหัสผ่าน" required>
+    <div class="checkbox mb-3">
+    </div>
+    <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">เข้าสู่ระบบ</button>
+  </form> -->
 </body>
