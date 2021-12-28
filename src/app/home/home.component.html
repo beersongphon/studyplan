@@ -93,15 +93,9 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
-            <a class="nav-link" routerLink="/report-transfer">
+            <a class="nav-link" routerLink="/report/transfer">
               <span data-feather="file-text"></span>
               รายงานสรุปสถิติผลการเทียบโอนแยกตามรายวิชาของทั้งสาขา
-            </a>
-          </li>
-          <li class="nav-item" *ngIf="(isLogin() && isLoout())">
-            <a class="nav-link" routerLink="#">
-              <span data-feather="file-text"></span>
-              รายงานสรุปผลการบันทึกรายวิชาเทียบโอน
             </a>
           </li>
           <li class="nav-item" *ngIf="(isLogin() && isStudent())">
@@ -111,13 +105,13 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="(isLogin() && isStudent())">
-            <a class="nav-link" routerLink="/report-transfers">
+            <a class="nav-link" routerLink="/report/transfers">
               <span data-feather="file-text"></span>
               รายงานสรุปผลการบันทึกรายวิชาเทียบโอน
             </a>
           </li>
           <li class="nav-item" *ngIf="(isLogin() && isTeacher()||isHeadOfIS())">
-            <a class="nav-link" routerLink="/report-transfer-sec">
+            <a class="nav-link" routerLink="/report/transfer-sec">
               <span data-feather="file-text"></span>
               รายงานสรุปสถิติผลการเทียบโอนแยกตามรายวิชาของทั้งห้อง
             </a>
