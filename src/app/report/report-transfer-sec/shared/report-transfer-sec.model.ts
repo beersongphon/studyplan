@@ -1,7 +1,7 @@
-export interface ReportTransfers {
+export interface ReportTransferSec {
   CourseTransfer_ID: string;
-  User_ID: string;
-  User_Name: string;
+  Student_ID: string;
+  Student_Name: string;
   Transfer_ID: string;
   Transfer_Name: string;
   Transfer_Credit: string;
@@ -9,9 +9,4 @@ export interface ReportTransfers {
   Subject_ID: string;
   Subject_Name: string;
   Subject_Credit: string;
-}
-
-export interface Student {
-  Student_ID: string;
-  Student_Name: string;
 }

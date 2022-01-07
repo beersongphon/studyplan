@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ReportTransfersService } from './shared/report-transfers.service';
-import { ApiService } from './../shared/api.service';
+import { ApiService } from './../../shared/api.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 

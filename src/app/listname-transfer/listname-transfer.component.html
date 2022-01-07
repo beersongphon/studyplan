@@ -12,13 +12,13 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="(isLogin() && isAdmin())">
-            <a class="nav-link" [routerLink]="['/report-transfer']" role="button">
+            <a class="nav-link" [routerLink]="['/report/transfer']" role="button">
               <span data-feather="file"></span>
               ย้อนกลับ
             </a>
           </li>
           <li class="nav-item" *ngIf="(isLogin() && isTeacher())">
-            <a class="nav-link" [routerLink]="['/report-transfer-sec']" role="button">
+            <a class="nav-link" [routerLink]="['/report/transfer-sec']" role="button">
               <span data-feather="file"></span>
               ย้อนกลับ
             </a>

@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-nav></app-nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <br/><br/>
+      <div id="print-me">
+        <div class="table-responsive">
+          <table *ngFor="let s of student let i = index">
+            <table>
+              <thead>
+                <tr>
+                  <th width="120"><div align = "left"><img class="mb-4" [src]="logo" [width]="logoWidth" [height]="logoHeight" alt=""></div></th>
+                  <th><div align = "left">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร<br><br>รายงานสรุปผลการบันทึกรายวิชาเทียบโอน</div></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div align = "left"></div></td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tr>
+                <th width="50"></th>
+                <td width="80">ข้าพเจ้า</td>
+                <td width="100">{{s.Student_Name}}</td>
+                <td width="100">รหัสประจําตัวนักศึกษา</td>
+                <td width="120">{{s.Student_ID}}</td>
+              </tr>
+              <tr>
+                <td width="50">สาขาวิชา</td>
+                <td width="100">{{s.Brand_Name}} ({{s.Sec_Name}})</td>
+                <td width="100">คณะ{{s.Faculty_Name}}</td>
+                <td width="120">โทรศัพท์ที่สามารถติดต่อได้สะดวก</td>
+                <td width="90">{{s.Phone}}</td>
+              </tr>
+              <tr>
+                <td width="120" colspan="5">ขอเสนอผลการเรียนเพื่อเทียบโอนรายวิชาในหลักสูตร ดังนี้</td>
+              </tr>
+            </table>
+
+            <br>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th width="238" colspan="5"><div align = "center">รายวิชาและผลการเรียนที่นำมาแสดง</div></th>
+                    <th width="120" colspan="3"><div align = "center">รายวิชาที่ขอเทียบโอนในหลักสูตร</div></th>
+                  </tr>
+                  <tr>
+                    <th scope="col"><div align = "center">ลำดับที่</div></th>
+                    <th scope="col"><div align = "center">รหัสวิชา</div></th>
+                    <th scope="col"><div align = "center">ชื่อวิชา</div></th>
+                    <th scope="col"><div align = "center">หน่วยกิต</div></th>
+                    <th scope="col"><div align = "center">เกรด</div></th>
+                    <th scope="col"><div align = "center">รหัสวิชา</div></th>
+                    <th scope="col"><div align = "center">ชื่อวิชา</div></th>
+                    <th scope="col"><div align = "center">หน่วยกิต</div></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let r of reporttransfers let i = index">
+                    <td><div align = "center">{{ i+1 }}</div></td>
+                    <td><div align = "center">{{r.Subject_Ins_ID}}</div></td>
+                    <td>{{r.Subject_Ins_Name}}</td>
+                    <td><div align = "center">{{r.Subject_Ins_Credit | number:0}}</div></td>
+                    <td><div align = "center">{{r.Grade}}</div></td>
+                    <td><div align = "center">{{r.Subject_ID}}</div></td>
+                    <td>{{r.Subject_Name}}</td>
+                    <td><div align = "center">{{r.Subject_Credit | number:0}}</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </table>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary" printSectionId="print-me" [useExistingCss]="true" ngxPrint >พิมพ์รายงาน</button>
+    </main>
+  </div>
+</div>

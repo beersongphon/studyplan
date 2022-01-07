@@ -1,18 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ReportTransfersService } from './shared/report-transfers.service';
-import { ApiService } from './../shared/api.service';
+import { ReportTransferSecService } from './shared/report-transfer-sec.service';
+import { ApiService } from './../../shared/api.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
-import { ReportTransfers } from './shared/report-transfers.model';
-import { Student } from './shared/report-transfers.model';
+import { ReportTransferSec } from './shared/report-transfer-sec.model';
 
 @Component({
-  selector: 'app-report-transfers',
-  templateUrl: './report-transfers.component.html',
-  styleUrls: ['./report-transfers.component.css']
+  selector: 'app-report-transfer-sec',
+  templateUrl: './report-transfer-sec.component.html',
+  styleUrls: ['./report-transfer-sec.component.css']
 })
-export class ReportTransfersComponent implements OnInit, OnDestroy {
+export class ReportTransferSecComponent implements OnInit, OnDestroy {
 
   //โลโก้
   logo = './assets/image/rmutp.png';
@@ -21,17 +20,15 @@ export class ReportTransfersComponent implements OnInit, OnDestroy {
   //ความสูงของโลโก้
   logoHeight = 150;
 
-  //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  reporttransfers: ReportTransfers[];
-  student: Student[];
+  reporttransfersec: ReportTransferSec[];
 
   sub: Subscription;
 
   loginbtn: boolean;
   logoutbtn: boolean;
 
-  //ใน constructor กำหนดให้ reporttransfersService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน ReportTransfersService กับ ApiService
-  constructor(private title: Title, private reporttransfersService: ReportTransfersService,
+  //ใน constructor กำหนดให้ reporttransfersecService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน ReportTransferSecService กับ ApiService
+  constructor(private title: Title, private reporttransfersecService: ReportTransferSecService,
     private apiService: ApiService) {
     apiService.getLoggedInName.subscribe(
       name => this.changeName(name)
@@ -55,34 +52,23 @@ export class ReportTransfersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //เรียก function getStudent เมื่อ App เริ่มทำงาน
-    this.getStudent();
     //เรียก function getCoursetransfer เมื่อ App เริ่มทำงาน
     this.getCoursetransfer();
     //แสดงชื่อแท็บของเว็บไซค์
-    this.title.setTitle('รายงานสรุปผลการบันทึกรายวิชาเทียบโอน');
-    this.reporttransfersService.getCoursetransfer().subscribe(
-      (reporttransfer) => {
+    this.title.setTitle('รายงานสรุปสถิติผลการเทียบโอนแยกตามรายวิชาของทั้งห้อง');
+    this.reporttransfersecService.getCoursetransfer().subscribe(
+      (reporttransfersecs) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCoursetransfer
-        this.reporttransfers = reporttransfer
+        this.reporttransfersec = reporttransfersecs;
       }
     );
   }
 
   //รับข้อมูลการเทียบโอนรายวิชา
   getCoursetransfer(): void{
-    this.sub = this.reporttransfersService.getCoursetransfer().subscribe(
-      (reporttransfer) => {
-        console.log(reporttransfer);
-      }
-    );
-  }
-
-  //รับข้อมูลนักศึกษา
-  getStudent(): void {
-    this.reporttransfersService.getStudent().subscribe(
-      (students) => {
-        this.student = students;
+    this.sub = this.reporttransfersecService.getCoursetransfer().subscribe(
+      (reporttransfers) => {
+        console.log(reporttransfers);
       }
     );
   }

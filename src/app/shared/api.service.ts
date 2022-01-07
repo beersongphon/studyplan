@@ -6,13 +6,13 @@ import { catchError, retry } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 
 export class Users {
-  public id_user: number;
-  public name: string;
-  public email: string;
-  public password: string;
-  public position: string;
-
+  public User_ID: number;
+  public User_Name: string;
+  public Email: string;
+  public Password: string;
+  public Userlevel_ID: string;
 }
+
 @Injectable({
   providedIn: 'root'
 })
