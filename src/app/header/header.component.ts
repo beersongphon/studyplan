@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logoutbtn: boolean;
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  user: User[];
+  user: User;
 
   sub: Subscription;
 
@@ -47,92 +47,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //เรียก function getUser เมื่อ App เริ่มทำงาน
     this.getUser();
-    this.headerService.getUser().subscribe(
-      (users) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountUser
-        this.user = users;
-      }
-    );
   }
 
   //รับข้อมูลจำนวนผู้ใช้ทั้งหมด
-  getUser(): void{
+  getUser(): void {
     this.sub = this.headerService.getUser().subscribe(
       (users) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountUser
+        this.user = users;
         console.log(users);
       }
     );
   }
 
   //จะถูกเรียก component จะถูกทำลายใช้สำหรับการ unsubscribe พวก observable และ event ต่างๆ ที่ subscribed ไว้เพื่อไม่ให้เกิดปัญหา memory leak
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  //แบ่งสิทธิ์สำหรับทุกระดับผู้ใช้
-  isLogin() {
-    if (this.apiService.isLoggedIn) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  //แบ่งสิทธิ์สำหรับผู้ดูแลระบบ
-  isAdmin() {
-    if (this.apiService.getUserlevel() == '1') {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  //แบ่งสิทธิ์สำหรับนักศึกษา
-  isStudent() {
-    if (this.apiService.getUserlevel() == '2') {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  //แบ่งสิทธิ์สำหรับอาจารย์ที่ปรึกษา
-  isTeacher() {
-    if (this.apiService.getUserlevel() == '3') {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  //แบ่งสิทธิ์สำหรับหัวหน้าสาขาวิชา
-  isHeadOfIS() {
-    if (this.apiService.getUserlevel() == '4') {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  isLoout() {
-    if (this.apiService.isLoggedIn) {
-      return false
-    } else {
-      return true
-    }
-  }
-
-  issLogin() {
-    if (this.apiService.isLoggedIn) {
-      return true
-    } else {
-      return false
-    }
-  }
-
   //ออกจากระบบ
-  logout() {
-    this.apiService.deleteToken();
+  logout(): void {
+    localStorage.clear();
+    // this.apiService.deleteToken();
     this.logoutbtn = false
     this.router.navigate(['/login']);
   }

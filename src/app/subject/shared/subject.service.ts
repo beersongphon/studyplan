@@ -37,6 +37,13 @@ export class SubjectService {
     return this.http.post<any>(environment.apiUrl + '/api_get_subject.php', formValue, { headers: apiHeader });
   }
 
+  getSubjectByKey(keyword: string): Observable<any[]>{
+    const param = {
+      'keyword' : keyword
+    };
+    return this.http.get<any[]>(environment.apiUrl + '/api_get_subjects.php', { params: param});
+  }
+
   //สร้าง function สำหรับเพิ่มข้อมูลวิชา
   insertSubject(formValue: any): Observable<any>{
     const apiHeader = { 'Content-Type': 'application/json' };

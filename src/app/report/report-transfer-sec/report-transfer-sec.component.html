@@ -46,8 +46,14 @@
               </tr>
             </thead>
             <tbody>
+              <tr *ngIf="reporttransfersec.length === 0">
+                <td colspan="4">
+                  <div class="text-center">No data to display.</div>
+                </td>
+              </tr>
               <tr *ngFor="let r of reporttransfersec let i = index">
-                <td><div align="center">{{ i+1 }}</div>
+                <td>
+                  <div align="center">{{ i+1 }}</div>
                 </td>
                 <td>
                   <div align="center">
@@ -57,7 +63,8 @@
                   </div>
                 </td>
                 <td>{{r.Subject_Name}}</td>
-                <td><div align="center">{{r.Student_ID}}</div>
+                <td>
+                  <div align="center">{{r.Student_ID}}</div>
                 </td>
               </tr>
             </tbody>

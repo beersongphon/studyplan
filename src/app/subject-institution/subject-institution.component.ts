@@ -56,25 +56,7 @@ export class SubjectInstitutionComponent implements OnInit {
   //ใน constructor กำหนดให้ subjectinstitutionService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน SubjectInstitutionService กับ ApiService
   constructor(private title: Title, private subjectinstitutionService: SubjectInstitutionService, public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -173,11 +155,11 @@ export class SubjectInstitutionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -192,11 +174,11 @@ export class SubjectInstitutionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

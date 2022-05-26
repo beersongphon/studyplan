@@ -21,7 +21,7 @@ export class ReportTransferComponent implements OnInit {
   logoHeight = 150;
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  reporttransfer: ReportTransfer[];
+  reporttransfer: ReportTransfer[] = [];
 
   sub: Subscription;
 
@@ -31,25 +31,7 @@ export class ReportTransferComponent implements OnInit {
   //ใน constructor กำหนดให้ reporttransferService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน ReportTransferService กับ ApiService
   constructor(private title: Title, private reporttransferService: ReportTransferService,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {

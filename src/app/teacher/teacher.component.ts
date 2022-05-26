@@ -43,14 +43,14 @@ export interface TeacherData {
 export class TeacherComponent implements OnInit {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  teacher: TeacherData[];
+  teacher: TeacherData[] = [];
 
   loginbtn: boolean;
   logoutbtn: boolean;
 
   //columns
   displayedColumns: string[] = ['User_ID', 'User_Name', 'Address', 'Phone', 'Email', 'action'];
-  dataSource: MatTableDataSource<TeacherData>;
+  dataSource = new MatTableDataSource<TeacherData>(this.teacher);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -59,25 +59,7 @@ export class TeacherComponent implements OnInit {
 
   constructor(private title: Title, private teacherService: TeacherService, public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -91,7 +73,7 @@ export class TeacherComponent implements OnInit {
   getTeachers(): void {
     this.teacherService.getTeachers().subscribe(
       (teachers) => {
-        this.teacher = teachers;
+        // this.teacher = teachers;
         this.dataSource = new MatTableDataSource(teachers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -103,7 +85,7 @@ export class TeacherComponent implements OnInit {
   getTeacher(formValue: any): void {
     this.teacherService.getTeacher(formValue).subscribe(
       (teachers) => {
-        this.teacher = teachers;
+        // this.teacher = teachers;
         this.dataSource = new MatTableDataSource(teachers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -246,11 +228,11 @@ export class TeacherComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -265,11 +247,11 @@ export class TeacherComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

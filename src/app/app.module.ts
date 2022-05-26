@@ -38,6 +38,10 @@ import { NgxPrintModule } from 'ngx-print';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { PortalModule } from '@angular/cdk/portal';
+import { MatLineModule } from '@angular/material/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -45,6 +49,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { StudentComponent } from './student/student.component';
 import { StudentDialogBoxComponent } from './student/student-dialog-box/student-dialog-box.component';
@@ -88,15 +94,17 @@ import { StructureComponent } from './structure/structure.component';
 import { ReportStructureComponent } from './report-structure/report-structure.component';
 import { ReportTransferSecComponent } from './report-transfer-sec/report-transfer-sec.component';
 import { ListnameTransferComponent } from './listname-transfer/listname-transfer.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutDialogComponent } from './checkout/checkout-dialog.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AdtobePipe } from './shared/adtobe.pipe';
-import { HeaderComponent } from './header/header.component';
-import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HeaderComponent,
+    NavComponent,
     HomeComponent,
     StudentComponent,
     StudentDialogBoxComponent,
@@ -140,10 +148,10 @@ import { NavComponent } from './nav/nav.component';
     AddingComponent,
     AddingsComponent,
     ListnameTransferComponent,
+    CartComponent,
+    CheckoutDialogComponent,
     PagenotfoundComponent,
-    AdtobePipe,
-    HeaderComponent,
-    NavComponent
+    AdtobePipe
   ],
   imports: [
     BrowserModule,
@@ -197,6 +205,10 @@ import { NavComponent } from './nav/nav.component';
     CdkTreeModule,
     OverlayModule,
     PortalModule,
+    MatLineModule,
+    MatProgressBarModule,
+    MatSlideToggleModule,
+    MatSliderModule,
     NgbModule
   ],
   providers: [

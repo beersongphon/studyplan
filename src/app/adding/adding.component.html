@@ -24,6 +24,12 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngIf="adding.length == 0">
+              <td colspan="10">
+                <div class="text-center">No data to display.</div>
+              </td>
+              <!-- <td colspan="10">No data to display.</td> -->
+            </tr>
             <tr *ngFor="let a of adding let i = index">
               <td><div align="center">{{ i+1 }}</div></td>
               <td>{{a.Student_ID}}</td>

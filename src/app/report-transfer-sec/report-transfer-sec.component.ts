@@ -31,25 +31,7 @@ export class ReportTransferSecComponent implements OnInit, OnDestroy {
   //ใน constructor กำหนดให้ reporttransfersecService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน ReportTransferSecService กับ ApiService
   constructor(private title: Title, private reporttransfersecService: ReportTransferSecService,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {

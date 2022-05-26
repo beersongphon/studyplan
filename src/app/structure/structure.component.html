@@ -19,7 +19,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let s of structure let i = index">
+              <tr *ngIf="structure.length === 0">
+                <td colspan="5">
+                  <div class="text-center">No data to display.</div>
+                </td>
+              </tr>
+              <tr *ngFor="let s of structure; let i = index">
                 <th scope="row"><div align="center">{{ i+1 }}</div></th>
                 <td>{{s.Course_ID}}</td>
                 <td>{{s.Course_Name}}</td>

@@ -44,14 +44,14 @@ export interface StructureData {
 export class StructuresComponent implements OnInit {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  structure: StructureData[];
+  structure: StructureData[] = [];
 
   loginbtn: boolean;
   logoutbtn: boolean;
 
   //columns
   displayedColumns: string[] = ['Subject_ID', 'Course_ID', 'Main_Name', 'Group_Name', 'Subject_Name', 'Subject_Credit', 'Subject_Detail', 'action'];
-  dataSource: MatTableDataSource<StructureData>;
+  dataSource = new MatTableDataSource<StructureData>(this.structure);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -60,25 +60,7 @@ export class StructuresComponent implements OnInit {
 
   constructor(private title: Title, private structuresService: StructuresService, public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -92,7 +74,7 @@ export class StructuresComponent implements OnInit {
   getStructures(): void {
     this.structuresService.getStructures().subscribe(
       (structures) => {
-        this.structure = structures;
+        // this.structure = structures;
         this.dataSource = new MatTableDataSource(structures);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -104,7 +86,7 @@ export class StructuresComponent implements OnInit {
   getStructure(formValue: any): void {
     this.structuresService.getStructure(formValue).subscribe(
       (structures) => {
-        this.structure = structures;
+        // this.structure = structures;
         this.dataSource = new MatTableDataSource(structures);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

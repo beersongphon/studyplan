@@ -38,7 +38,7 @@ export interface CourseData {
 export class CourseComponent implements OnInit {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  course: CourseData[];
+  course: CourseData[] = [];
 
   loginbtn: boolean;
   logoutbtn: boolean;
@@ -46,7 +46,7 @@ export class CourseComponent implements OnInit {
   //Column
   displayedColumns: string[] = ['Course_ID', 'Course_Name', 'Course_Allcredit', 'action'];
 
-  dataSource: MatTableDataSource<CourseData>;
+  dataSource = new MatTableDataSource<CourseData>(this.course);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -57,25 +57,7 @@ export class CourseComponent implements OnInit {
   constructor(private title: Title, private courseService: CourseService,
     public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -90,7 +72,7 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourses().subscribe(
       (courses) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร Courses
-        this.course = courses;
+        // this.course = courses;
         this.dataSource = new MatTableDataSource(courses);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -103,7 +85,7 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourse(formValue).subscribe(
       (courses) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร Course
-        this.course = courses;
+        // this.course = courses;
         this.dataSource = new MatTableDataSource(courses);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

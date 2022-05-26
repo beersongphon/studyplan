@@ -37,14 +37,14 @@ export interface InstitutionData {
 export class InstitutionComponent implements OnInit {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  institution: InstitutionData[];
+  institution: InstitutionData[] = [];
 
   loginbtn: boolean;
   logoutbtn: boolean;
 
   //Column
   displayedColumns: string[] = ['Institution_ID', 'Institution_Name', 'action'];
-  dataSource: MatTableDataSource<InstitutionData>;
+  dataSource = new MatTableDataSource<InstitutionData>(this.institution);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,25 +53,7 @@ export class InstitutionComponent implements OnInit {
 
   //ใน constructor กำหนดให้ institutionService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน InstitutionService กับ ApiService
   constructor(private title: Title, private institutionService: InstitutionService, public dialog: MatDialog, private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -86,7 +68,7 @@ export class InstitutionComponent implements OnInit {
     this.institutionService.getInstitutions().subscribe(
       (institutions) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getInstitutions
-        this.institution = institutions;
+        // this.institution = institutions;
         this.dataSource = new MatTableDataSource(institutions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -99,7 +81,7 @@ export class InstitutionComponent implements OnInit {
     this.institutionService.getInstitution(formValue).subscribe(
       (institutions) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getInstitution
-        this.institution = institutions;
+        // this.institution = institutions;
         this.dataSource = new MatTableDataSource(institutions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -111,6 +93,30 @@ export class InstitutionComponent implements OnInit {
   updateInstitution(formValue: any): void {
     this.institutionService.updateInstitution(formValue).subscribe(
       (message) => {
+        // if (message.status) {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (message.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
+        //       this.getInstitutions();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (message.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
         Swal.fire({
           title: (message.message),
           showConfirmButton: false,

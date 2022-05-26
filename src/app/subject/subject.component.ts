@@ -42,14 +42,14 @@ export interface SubjectData {
 export class SubjectComponent implements OnInit {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  subject: SubjectData[];
+  subject: SubjectData[] = [];
 
   loginbtn: boolean;
   logoutbtn: boolean;
 
   //columns
   displayedColumns: string[] = ['Subject_ID', 'Main_Name', 'Group_Name', 'Subject_Name', 'Subject_Credit', 'Subject_Detail', 'action'];
-  dataSource: MatTableDataSource<SubjectData>;
+  dataSource = new MatTableDataSource<SubjectData>(this.subject);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,25 +58,7 @@ export class SubjectComponent implements OnInit {
 
   constructor(private title: Title, private subjectService: SubjectService, public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -90,7 +72,7 @@ export class SubjectComponent implements OnInit {
   getSubjects(): void {
     this.subjectService.getSubjects().subscribe(
       (subjects) => {
-        this.subject = subjects;
+        // this.subject = subjects;
         this.dataSource = new MatTableDataSource(subjects);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -102,7 +84,7 @@ export class SubjectComponent implements OnInit {
   getSubject(formValue: any): void {
     this.subjectService.getSubject(formValue).subscribe(
       (subjects) => {
-        this.subject = subjects;
+        // this.subject = subjects;
         this.dataSource = new MatTableDataSource(subjects);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -173,11 +155,11 @@ export class SubjectComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -205,11 +187,11 @@ export class SubjectComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

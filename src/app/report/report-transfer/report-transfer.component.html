@@ -31,6 +31,11 @@
               </tr>
             </thead>
             <tbody>
+              <tr *ngIf="reporttransfer.length === 0">
+                <td colspan="4">
+                  <div class="text-center">No data to display.</div>
+                </td>
+              </tr>
               <tr *ngFor="let r of reporttransfer let i = index">
                 <td><div align = "center">{{ i+1 }}</div></td>
                 <td><div align = "center">{{r.Subject_ID}}</div></td>

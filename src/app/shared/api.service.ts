@@ -60,16 +60,6 @@ export class ApiService {
     return throwError(error);
   }
 
-  // public userregistration(User_Name: any, Email: any, Password: any) {
-  //   return this.http.post<any>(this.registerUrl, { User_Name, Email, Password }).pipe(
-  //     map(
-  //       Users => {
-  //         return Users;
-  //       }
-  //     )
-  //   );
-  // }
-
   //token
   setToken(token: string, Userlevel_ID: string) {
     // localStorage.setItem('token', JSON.stringify(token));

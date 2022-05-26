@@ -58,30 +58,13 @@ export class StudentAddingComponent implements OnInit {
   dataSource: AddingData[];
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   //ใน constructor กำหนดให้ studentaddingService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน StudentAddingService กับ ApiService
   constructor(
     private title: Title, private studentaddingService: StudentAddingService, public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -159,9 +142,9 @@ export class StudentAddingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม/ถอน'){
+      if (result.event === 'เพิ่ม/ถอน') {
         this.addRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
@@ -176,9 +159,9 @@ export class StudentAddingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });

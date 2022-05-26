@@ -56,14 +56,14 @@ export interface StudentData {
 export class StudentComponent implements OnInit {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  student: StudentData[];
+  student: StudentData[] = [];
 
   loginbtn: boolean;
   logoutbtn: boolean;
 
   //columns
   displayedColumns: string[] = ['User_ID', 'User_Name', 'Faculty_Name', 'Brand_Name', 'Field_of_Study_Name', 'Sec_Name', 'Teacher_Name', 'Phone', 'Email', 'action'];
-  dataSource: MatTableDataSource<StudentData>;
+  dataSource = new MatTableDataSource<StudentData>(this.student);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -72,40 +72,25 @@ export class StudentComponent implements OnInit {
 
   constructor(private title: Title, private studentService: StudentService, public dialog: MatDialog,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
     //แสดงชื่อแท็บของเว็บไซค์
     this.title.setTitle('ข้อมูลนักศึกษา');
     //เรียก function getStudents เมื่อ App เริ่มทำงาน
-    this.getStudents();
+    this.getStudents()
   }
 
   //รับข้อมูลนักศึกษา
   getStudents(): void {
     this.studentService.getStudents().subscribe(
       (students) => {
-        this.student = students;
-        this.dataSource = new MatTableDataSource(students);
+        this.dataSource = new MatTableDataSource<StudentData>(
+          students
+        );
+        // this.student = students;
+        // this.dataSource = new MatTableDataSource(students);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
@@ -138,6 +123,7 @@ export class StudentComponent implements OnInit {
         //     this.getStudents();
         //   }
         // });
+        console.log(message.message)
         alert(message.message);
         this.getStudents();
       }
@@ -258,11 +244,11 @@ export class StudentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

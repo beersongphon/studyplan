@@ -1,0 +1,76 @@
+<ng-container *ngIf="(state | async) as s">
+	<!-- <pre>
+    {{ s | json }}
+  </pre> -->
+	<h3>
+		Checkout
+		<button style="float: right;" mat-icon-button [mat-dialog-close]><mat-icon>cancel</mat-icon></button>
+  </h3>
+
+	<div *ngIf="s.cart.length > 0; else elseBlock">
+  <p>
+    Review your items and checkout
+  </p>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>รวมหน่วยกิต: {{s.tot.subTot}}</mat-card-title>
+      <!-- <mat-card-subtitle>
+      tax: {{ s.tot.tax | currency:'USD':'symbol':'1.2-2' }}
+      <br />
+          at checkout: {{ s.tot.grandTot | currency:'USD':'symbol':'1.2-2' }}
+        </mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-actions style="text-align: right;">
+        <button type="button" mat-button color="accent" (click)="completeOrder()">
+          Complete my order <mat-icon>check</mat-icon>
+        </button>
+      </mat-card-actions>
+  </mat-card>
+  <!-- <div *ngFor="let item of s.cart">
+    <p>
+      {{item.Subject_ID}}<br />
+      <strong>{{item.Subject_Name}}</strong>
+    </p>
+  </div> -->
+  <table class="table">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Subject_ID</th>
+        <th scope="col">Subject_Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of s.cart">
+        <td> {{ item.Subject_ID }} </td>
+        <td> {{ item.Subject_Name }} </td>
+      </tr>
+      </tbody>
+    <tfoot>
+      <td> ราคารวม : </td>
+      <td > {{ s.tot.grandTot | currency:'USD':'symbol':'1.2-2' }} </td>
+    </tfoot>
+  </table>
+</div>
+<form #regisForm="ngForm" novalidate>
+  <div class="form-group">
+    <label for="hn_id">รหัสลูกค้า</label>
+    <select required #hn_id="ngModel" ngModel
+      [ngClass]="{'is-invalid': hn_id.invalid && (hn_id.touched || hn_id.dirty)}" name="hn_id"
+      class="form-control" id="hn_id" >
+      <option *ngFor="let p of user" >{{ p.hn_id }}</option>
+    </select>
+  </div>
+  <mat-card-actions>
+    <!-- <button [disabled]="regisForm.invalid" mat-flat-button color="primary" role="button"
+      (click)="insertpreliminary(s.cart,hn_id,regisForm.value,state)">
+      บันทึก
+    </button> -->
+  </mat-card-actions>
+</form>
+  <ng-template #elseBlock>
+    <h4>Thank you for your fake purchase!</h4>
+     <button type="button" mat-button color="primary" [mat-dialog-close]>
+         Close <mat-icon>cancel</mat-icon>
+        </button>
+  </ng-template>
+</ng-container>

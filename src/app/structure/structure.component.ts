@@ -14,7 +14,7 @@ import { Structure } from './shared/structure.model';
 export class StructureComponent implements OnInit, OnDestroy {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  structure: Structure[];
+  structure: Structure[] = [];
 
   sub: Subscription;
 
@@ -24,25 +24,7 @@ export class StructureComponent implements OnInit, OnDestroy {
   //ใน constructor กำหนดให้ reporttransfersService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน ReportTransfersService กับ ApiService
   constructor(private title: Title, private structureService: StructureService,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {

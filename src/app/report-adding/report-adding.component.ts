@@ -35,23 +35,7 @@ export class ReportAddingComponent implements OnInit {
   //ใน constructor กำหนดให้ addingService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน AddingService กับ ApiService
   constructor(private titleQ: Title, private route: ActivatedRoute, private addingService: AddingService,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {

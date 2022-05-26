@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logoutbtn: boolean;
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  user: User[];
+  user: User;
 
   sub: Subscription;
 

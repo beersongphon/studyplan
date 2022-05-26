@@ -15,8 +15,8 @@ export class HeaderService {
     return localStorage.getItem('token');
   }
 
-  getUser(): Observable<User[]>{
+  getUser(): Observable<User>{
     const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<User[]>(environment.apiUrl + '/api_show_user.php', { headers: apiHeader });
+    return this.http.get<User>(environment.apiUrl + '/api_show_user.php', { headers: apiHeader });
   }
 }

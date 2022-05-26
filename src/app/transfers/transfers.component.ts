@@ -14,7 +14,7 @@ import { CourseTransfer } from './shared/transfer.model';
 export class TransfersComponent implements OnInit, OnDestroy {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  coursetransfer: CourseTransfer[];
+  coursetransfer: CourseTransfer[] = [];
 
   sub: Subscription;
 
@@ -23,25 +23,7 @@ export class TransfersComponent implements OnInit, OnDestroy {
 
   constructor(private title: Title, private transfersService: TransfersService,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -58,7 +40,7 @@ export class TransfersComponent implements OnInit, OnDestroy {
   }
 
   //รับข้อมูลการเทียบโอน สำหรับนักศึกษา
-  getCoursetransfer(): void{
+  getCoursetransfer(): void {
     this.sub = this.transfersService.getCoursetransfer().subscribe(
       (coursetransfers) => {
         console.log(coursetransfers);
@@ -67,7 +49,7 @@ export class TransfersComponent implements OnInit, OnDestroy {
   }
 
   //จะถูกเรียก component จะถูกทำลายใช้สำหรับการ unsubscribe พวก observable และ event ต่างๆ ที่ subscribed ไว้เพื่อไม่ให้เกิดปัญหา memory leak
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 }

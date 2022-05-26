@@ -25,7 +25,7 @@ export class ReportStructureComponent implements OnInit {
   structure: Structure[];
 
   id: number;
-  content: any[];
+  content: any[] = [];
   title: string;
 
   sub: Subscription;
@@ -36,25 +36,7 @@ export class ReportStructureComponent implements OnInit {
   //ใน constructor กำหนดให้ structureService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน structureService กับ ApiService
   constructor(private titleQ: Title, private route: ActivatedRoute, private structureService: StructureService,
     private apiService: ApiService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {

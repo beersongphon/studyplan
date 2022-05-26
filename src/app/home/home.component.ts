@@ -18,41 +18,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   logoutbtn: boolean;
 
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
-  user: User[];
-  student: Student[];
-  teacher: Teacher[];
-  course: Course[];
-  subjectgroup: SubjectGroup[];
-  subject: Subject[];
-  institution: Institution[];
-  adding: Adding[];
-  transfer: Transfer[];
-  addings: Addings[];
-  subjectinstitution: SubjectInstitution[];
+  user: User;
+  student: Student;
+  teacher: Teacher;
+  course: Course;
+  subjectgroup: SubjectGroup;
+  subject: Subject;
+  institution: Institution;
+  adding: Adding;
+  transfer: Transfer;
+  addings: Addings;
+  subjectinstitution: SubjectInstitution;
 
   sub: Subscription;
 
   //ใน constructor กำหนดให้ homeService กับ apiService เป็นตัวแปรแบบ private และ เรียกใช้งาน HomeService กับ ApiService
   constructor(private title: Title, private apiService: ApiService, private homeService: HomeService) {
-    apiService.getLoggedInName.subscribe(
-      name => this.changeName(name)
-    );
-    //เช็ค token
-    if (this.apiService.isLoggedIn()) {
-      console.log("loggedin");
-      this.loginbtn = false;
-      this.logoutbtn = true
-    }
-    else {
-      this.loginbtn = true;
-      this.logoutbtn = false
-    }
-  }
 
-  //เปลี่ยนปุ่มสำหรับเข้าสู่ระบบ
-  private changeName(name: boolean): void {
-    this.logoutbtn = name;
-    this.loginbtn = !name;
   }
 
   ngOnInit(): void {
@@ -60,98 +42,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.title.setTitle('หน้าแรก');
     //เรียก function getCountUser เมื่อ App เริ่มทำงาน
     this.getCountUser();
-    this.homeService.getCountUser().subscribe(
-      (users) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountUser
-        this.user = users;
-      }
-    );
     //เรียก function getCountStudent เมื่อ App เริ่มทำงาน
     this.getCountStudent();
-    this.homeService.getCountStudent().subscribe(
-      (students) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountStudent
-        this.student = students;
-      }
-    );
     //เรียก function getCountTeacher เมื่อ App เริ่มทำงาน
     this.getCountTeacher();
-    this.homeService.getCountTeacher().subscribe(
-      (teachers) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountTeacher
-        this.teacher = teachers;
-      }
-    );
     //เรียก function getCountCourse เมื่อ App เริ่มทำงาน
     this.getCountCourse();
-    this.homeService.getCountCourse().subscribe(
-      (courses) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountCourse
-        this.course = courses;
-      }
-    );
     //เรียก function getCountGroup เมื่อ App เริ่มทำงาน
     this.getCountGroup();
-    this.homeService.getCountGroup().subscribe(
-      (groups) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountGroup
-        this.subjectgroup = groups;
-      }
-    );
     //เรียก function getCountSubject เมื่อ App เริ่มทำงาน
     this.getCountSubject();
-    this.homeService.getCountSubject().subscribe(
-      (subjects) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountSubject
-        this.subject = subjects;
-      }
-    );
     //เรียก function getCountInstitution เมื่อ App เริ่มทำงาน
     this.getCountInstitution();
-    this.homeService.getCountInstitution().subscribe(
-      (institutions) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountInstitution
-        this.institution = institutions;
-      }
-    );
     //เรียก function getCountAddingStudent เมื่อ App เริ่มทำงาน
     this.getCountAddingStudent();
-    this.homeService.getCountAddingStudent().subscribe(
-      (addings) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountAddingStudent
-        this.adding = addings;
-      }
-    );
     //เรียก function getCountTransferStudent เมื่อ App เริ่มทำงาน
     this.getCountTransferStudent();
-    this.homeService.getCountTransferStudent().subscribe(
-      (transfers) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountTransferStudent
-        this.transfer = transfers;
-      }
-    );
     //เรียก function getCountAddingTeacher เมื่อ App เริ่มทำงาน
     this.getCountAddingTeacher();
-    this.homeService.getCountAddingTeacher().subscribe(
-      (adding) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountAddingTeacher
-        this.addings = adding;
-      }
-    );
     //เรียก function getCountSubjectInstitution เมื่อ App เริ่มทำงาน
     this.getCountSubjectInstitution();
-    this.homeService.getCountSubjectInstitution().subscribe(
-      (subjectinstitutions) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountSubjectInstitution
-        this.subjectinstitution = subjectinstitutions;
-      }
-    );
   }
 
   //รับข้อมูลจำนวนผู้ใช้ทั้งหมด
   getCountUser(): void{
     this.sub = this.homeService.getCountUser().subscribe(
       (users) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountUser
+        this.user = users;
         console.log(users);
       }
     );
@@ -161,6 +79,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountStudent(): void{
     this.sub = this.homeService.getCountStudent().subscribe(
       (students) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountStudent
+        this.student = students;
         console.log(students);
       }
     );
@@ -170,6 +90,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountTeacher(): void{
     this.sub = this.homeService.getCountTeacher().subscribe(
       (teachers) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountTeacher
+        this.teacher = teachers;
         console.log(teachers);
       }
     );
@@ -179,6 +101,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountCourse(): void{
     this.sub = this.homeService.getCountCourse().subscribe(
       (courses) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountCourse
+        this.course = courses;
         console.log(courses);
       }
     );
@@ -188,6 +112,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountGroup(): void{
     this.sub = this.homeService.getCountGroup().subscribe(
       (groups) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountGroup
+        this.subjectgroup = groups;
         console.log(groups);
       }
     );
@@ -197,6 +123,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountSubject(): void{
     this.sub = this.homeService.getCountSubject().subscribe(
       (subjects) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountSubject
+        this.subject = subjects;
         console.log(subjects);
       }
     );
@@ -206,6 +134,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountInstitution(): void{
     this.sub = this.homeService.getCountInstitution().subscribe(
       (institutions) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountInstitution
+        this.institution = institutions;
         console.log(institutions);
       }
     );
@@ -215,6 +145,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountAddingStudent(): void{
     this.sub = this.homeService.getCountAddingStudent().subscribe(
       (addings) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountAddingStudent
+        this.adding = addings;
         console.log(addings);
       }
     );
@@ -224,6 +156,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountTransferStudent(): void{
     this.sub = this.homeService.getCountTransferStudent().subscribe(
       (transfers) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountTransferStudent
+        this.transfer = transfers;
         console.log(transfers);
       }
     );
@@ -233,6 +167,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountAddingTeacher(): void{
     this.sub = this.homeService.getCountAddingTeacher().subscribe(
       (addings) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountAddingTeacher
+        this.addings = addings;
         console.log(addings);
       }
     );
@@ -242,6 +178,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCountSubjectInstitution(): void{
     this.sub = this.homeService.getCountSubjectInstitution().subscribe(
       (subjectinstitutions) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getCountSubjectInstitution
+        this.subjectinstitution = subjectinstitutions;
         console.log(subjectinstitutions);
       }
     );

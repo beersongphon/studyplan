@@ -9,7 +9,7 @@
   &nbsp;
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" *ngFor="let u of user">{{u.User_Name}}</a>
+      <a class="nav-link" *ngIf="user">{{user.User_Name}}</a>
     </li>
   </ul>
   <ul class="navbar-nav px-3">

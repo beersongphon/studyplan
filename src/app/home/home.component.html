@@ -133,7 +133,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนผู้ใช้งาน</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let u of user">{{u.User_ID}} คน</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="user">{{user.User_ID}} คน</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -151,7 +151,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนนักศึกษา</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let s of student">{{s.Student_ID}} คน</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="student">{{student.Student_ID}} คน</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -169,7 +169,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนอาจารย์</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let t of teacher">{{t.Teacher_ID}} คน</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="teacher">{{teacher.Teacher_ID}} คน</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-default text-white rounded-circle shadow">
@@ -187,7 +187,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนหลักสูตร</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let c of course">{{c.Course_ID}} หลักสูตร</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="course">{{course.Course_ID}} หลักสูตร</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -205,7 +205,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนกลุ่มวิชา</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let g of subjectgroup">{{g.Group_ID}} กลุ่ม</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="subjectgroup">{{subjectgroup.Group_ID}} กลุ่ม</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-cyan text-white rounded-circle shadow">
@@ -223,7 +223,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรายวิชา</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let s of subject">{{s.Subject_ID}} วิชา</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="subject">{{subject.Subject_ID}} วิชา</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
@@ -241,7 +241,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนสถาบันเดิม</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let i of institution">{{i.Institution_ID}} ที่</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="institution">{{institution.Institution_ID}} ที่</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-indigo text-white rounded-circle shadow">
@@ -259,7 +259,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรอการอนุมัติเพิ่มถอนของนักศึกษา</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let a of adding">{{a.Add_With_ID}} วิชา</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="adding">{{adding.Add_With_ID}} วิชา</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
@@ -277,7 +277,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนหน่วยกิตที่เทียบโอนได้ของนักศึกษา</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let t of transfer">{{t.Subject_Credit}} หน่วยกิต</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="transfer">{{transfer.Subject_Credit}} หน่วยกิต</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
@@ -295,7 +295,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรอการอนุมัติเพิ่มถอนของนักศึกษา</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let add of addings">{{add.Add_With_ID}} วิชา</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="addings">{{addings.Add_With_ID}} วิชา</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
@@ -313,7 +313,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">จำนวนรายวิชาจากสถาบันเดิม</h5>
-                  <span class="h2 font-weight-bold mb-0" *ngFor="let si of subjectinstitution">{{si.Subject_Ins_ID}} วิชา</span>
+                  <span class="h2 font-weight-bold mb-0" *ngIf="subjectinstitution">{{subjectinstitution.Subject_Ins_ID}} วิชา</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
