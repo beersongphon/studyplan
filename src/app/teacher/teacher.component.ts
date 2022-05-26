@@ -73,7 +73,7 @@ export class TeacherComponent implements OnInit {
   getTeachers(): void {
     this.teacherService.getTeachers().subscribe(
       (teachers) => {
-        // this.teacher = teachers;
+        this.teacher = teachers;
         this.dataSource = new MatTableDataSource(teachers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -85,7 +85,7 @@ export class TeacherComponent implements OnInit {
   getTeacher(formValue: any): void {
     this.teacherService.getTeacher(formValue).subscribe(
       (teachers) => {
-        // this.teacher = teachers;
+        this.teacher = teachers;
         this.dataSource = new MatTableDataSource(teachers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

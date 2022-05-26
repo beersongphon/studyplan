@@ -68,7 +68,7 @@ export class InstitutionComponent implements OnInit {
     this.institutionService.getInstitutions().subscribe(
       (institutions) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getInstitutions
-        // this.institution = institutions;
+        this.institution = institutions;
         this.dataSource = new MatTableDataSource(institutions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -81,7 +81,7 @@ export class InstitutionComponent implements OnInit {
     this.institutionService.getInstitution(formValue).subscribe(
       (institutions) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getInstitution
-        // this.institution = institutions;
+        this.institution = institutions;
         this.dataSource = new MatTableDataSource(institutions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

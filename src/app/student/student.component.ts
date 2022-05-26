@@ -86,11 +86,11 @@ export class StudentComponent implements OnInit {
   getStudents(): void {
     this.studentService.getStudents().subscribe(
       (students) => {
-        this.dataSource = new MatTableDataSource<StudentData>(
-          students
-        );
-        // this.student = students;
-        // this.dataSource = new MatTableDataSource(students);
+        // this.dataSource = new MatTableDataSource<StudentData>(
+        //   students
+        // );
+        this.student = students;
+        this.dataSource = new MatTableDataSource(students);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
@@ -123,7 +123,6 @@ export class StudentComponent implements OnInit {
         //     this.getStudents();
         //   }
         // });
-        console.log(message.message)
         alert(message.message);
         this.getStudents();
       }
@@ -244,11 +243,11 @@ export class StudentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      }else if (result === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      }else if (result === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

@@ -74,7 +74,7 @@ export class StructuresComponent implements OnInit {
   getStructures(): void {
     this.structuresService.getStructures().subscribe(
       (structures) => {
-        // this.structure = structures;
+        this.structure = structures;
         this.dataSource = new MatTableDataSource(structures);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -86,7 +86,7 @@ export class StructuresComponent implements OnInit {
   getStructure(formValue: any): void {
     this.structuresService.getStructure(formValue).subscribe(
       (structures) => {
-        // this.structure = structures;
+        this.structure = structures;
         this.dataSource = new MatTableDataSource(structures);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

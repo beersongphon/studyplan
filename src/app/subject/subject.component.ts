@@ -72,7 +72,7 @@ export class SubjectComponent implements OnInit {
   getSubjects(): void {
     this.subjectService.getSubjects().subscribe(
       (subjects) => {
-        // this.subject = subjects;
+        this.subject = subjects;
         this.dataSource = new MatTableDataSource(subjects);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -84,7 +84,7 @@ export class SubjectComponent implements OnInit {
   getSubject(formValue: any): void {
     this.subjectService.getSubject(formValue).subscribe(
       (subjects) => {
-        // this.subject = subjects;
+        this.subject = subjects;
         this.dataSource = new MatTableDataSource(subjects);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

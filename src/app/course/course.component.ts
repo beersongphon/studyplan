@@ -72,7 +72,7 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourses().subscribe(
       (courses) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร Courses
-        // this.course = courses;
+        this.course = courses;
         this.dataSource = new MatTableDataSource(courses);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -85,7 +85,7 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourse(formValue).subscribe(
       (courses) => {
         //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร Course
-        // this.course = courses;
+        this.course = courses;
         this.dataSource = new MatTableDataSource(courses);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

@@ -73,7 +73,7 @@ export class SubjectGroupComponent implements OnInit {
   getGroups(): void {
     this.subjectgroupService.getGroups().subscribe(
       (groups) => {
-        // this.group = groups;
+        this.group = groups;
         this.dataSource = new MatTableDataSource(groups);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -85,7 +85,7 @@ export class SubjectGroupComponent implements OnInit {
   getGroup(formValue: any): void {
     this.subjectgroupService.getGroup(formValue).subscribe(
       (groups) => {
-        // this.group = groups;
+        this.group = groups;
         this.dataSource = new MatTableDataSource(groups);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
