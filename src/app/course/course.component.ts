@@ -107,17 +107,31 @@ export class CourseComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูล
   updateCourse(formValue: any): void {
     this.courseService.updateCourse(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getCourses เพื่อแสดงข้อมูลล่าสุด
-            this.getCourses();
-          }
-        });
+      (messages) => {
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getCourses เพื่อแสดงข้อมูลล่าสุด
+              this.getCourses();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -125,17 +139,31 @@ export class CourseComponent implements OnInit {
   //แสดงข้อความลบข้อมูล
   deleteCourse(formValue: any): void {
     this.courseService.deleteCourse(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getCourses เพื่อแสดงข้อมูลล่าสุด
-            this.getCourses();
-          }
-        });
+      (messages) => {
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getCourses เพื่อแสดงข้อมูลล่าสุด
+              this.getCourses();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -143,17 +171,31 @@ export class CourseComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูล
   insertCourse(formValue: any): void {
     this.courseService.insertCourse(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getCourses เพื่อแสดงข้อมูลล่าสุด
-            this.getCourses();
-          }
-        });
+      (messages) => {
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getCourses เพื่อแสดงข้อมูลล่าสุด
+              this.getCourses();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }

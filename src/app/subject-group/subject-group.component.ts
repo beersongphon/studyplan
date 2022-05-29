@@ -96,17 +96,32 @@ export class SubjectGroupComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูลกลุ่มวิชา
   updateGroup(formValue: any): void {
     this.subjectgroupService.updateGroup(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getGroups();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getGroups เพื่อแสดงข้อมูลล่าสุด
+              this.getGroups();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -114,17 +129,32 @@ export class SubjectGroupComponent implements OnInit {
   //แสดงข้อความลบข้อมูลกลุ่มวิชา
   deleteGroup(formValue: any): void {
     this.subjectgroupService.deleteGroup(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getGroups();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getGroups เพื่อแสดงข้อมูลล่าสุด
+              this.getGroups();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -132,17 +162,32 @@ export class SubjectGroupComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูลกลุ่มวิชา
   insertGroup(formValue: any): void {
     this.subjectgroupService.insertGroup(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getGroups();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getGroups เพื่อแสดงข้อมูลล่าสุด
+              this.getGroups();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -156,11 +201,11 @@ export class SubjectGroupComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -175,11 +220,11 @@ export class SubjectGroupComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

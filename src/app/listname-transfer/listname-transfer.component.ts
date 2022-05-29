@@ -60,7 +60,7 @@ export class ListnameTransferComponent implements OnInit {
 
   //แบ่งสิทธิ์สำหรับทุกระดับผู้ใช้
   isLogin() {
-    if (this.apiService.isLoggedIn) {
+    if (this.apiService.isLoggedIn()) {
       return true
     } else {
       return false

@@ -85,17 +85,6 @@ export class LoginComponent implements OnInit {
               // this.profile.image = '../../assets/image/user.png';
             }
           });
-        } else if (token.error) {
-          Swal.fire({
-            icon: 'error',
-            title: (token.message),
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            if (result.isDismissed) {
-              window.history.back;
-            }
-          });
         } else {
           Swal.fire({
             icon: 'error',
@@ -110,7 +99,17 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        alert(error.name);
+        Swal.fire({
+          icon: 'error',
+          title: (error.name),
+          showConfirmButton: false,
+          timer: 1500
+        }).then((result) => {
+          if (result.isDismissed) {
+            window.history.back;
+          }
+        });
+        // alert(error.name);
       }
     );
   }

@@ -97,18 +97,32 @@ export class StudentAddingComponent implements OnInit {
   //แสดงข้อความลบข้อมูลเพิ่ม ถอน
   deleteAdding(formValue: any): void {
     this.studentaddingService.deleteAdding(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
-            this.getAddings();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getAddings();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -116,19 +130,33 @@ export class StudentAddingComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูลเพิ่ม ถอน
   insertAdding(formValue: any): void {
     this.studentaddingService.insertAdding(formValue).subscribe(
-      (message) => {
-        console.log(message);
+      (messages) => {
+        console.log(messages);
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
-            this.getAddings();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getAddings();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }

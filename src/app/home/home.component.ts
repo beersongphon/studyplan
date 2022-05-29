@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //แบ่งสิทธิ์สำหรับทุกระดับผู้ใช้
   isLogin() {
-    if (this.apiService.isLoggedIn) {
+    if (this.apiService.isLoggedIn()) {
       return true
     } else {
       return false
@@ -236,7 +236,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   isLoout() {
-    if (this.apiService.isLoggedIn) {
+    if (this.apiService.isLoggedIn()) {
       return false
     } else {
       return true
@@ -244,7 +244,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   issLogin() {
-    if (this.apiService.isLoggedIn) {
+    if (this.apiService.isLoggedIn()) {
       return true
     } else {
       return false

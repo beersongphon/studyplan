@@ -97,17 +97,32 @@ export class StructuresComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูลวิชา
   updateStructure(formValue: any): void {
     this.structuresService.updateStructure(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getStructures();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getStructures เพื่อแสดงข้อมูลล่าสุด
+              this.getStructures();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -115,17 +130,32 @@ export class StructuresComponent implements OnInit {
   //แสดงข้อความลบข้อมูลวิชา
   deleteStructure(formValue: any): void {
     this.structuresService.deleteStructure(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getStructures();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getStructures เพื่อแสดงข้อมูลล่าสุด
+              this.getStructures();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -133,17 +163,32 @@ export class StructuresComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูลวิชา
   insertStructure(formValue: any): void {
     this.structuresService.insertStructure(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getStructures();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getStructures เพื่อแสดงข้อมูลล่าสุด
+              this.getStructures();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }

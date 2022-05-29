@@ -41,7 +41,7 @@ export class AddingComponent implements OnInit, OnDestroy {
   }
 
   //รับข้อมูลการเพิ่มถอน
-  getAdding(): void{
+  getAdding(): void {
     this.sub = this.addingService.getAdding().subscribe(
       (reportaddings) => {
         console.log(reportaddings);
@@ -50,7 +50,7 @@ export class AddingComponent implements OnInit, OnDestroy {
   }
 
   //จะถูกเรียก component จะถูกทำลายใช้สำหรับการ unsubscribe พวก observable และ event ต่างๆ ที่ subscribed ไว้เพื่อไม่ให้เกิดปัญหา memory leak
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 

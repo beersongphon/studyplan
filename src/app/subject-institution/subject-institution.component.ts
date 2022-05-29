@@ -95,17 +95,31 @@ export class SubjectInstitutionComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูลวิชาจากสถาบันเดิม
   updateSubjectofInstitution(formValue: any): void {
     this.subjectinstitutionService.updateSubjectofInstitution(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getSubjectofInstitutions เพื่อแสดงข้อมูลล่าสุด
-            this.getSubjectofInstitutions();
-          }
-        });
+      (messages) => {
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getSubjectofInstitutions เพื่อแสดงข้อมูลล่าสุด
+              this.getSubjectofInstitutions();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -113,17 +127,31 @@ export class SubjectInstitutionComponent implements OnInit {
   //แสดงข้อความลบข้อมูลวิชาจากสถาบันเดิม
   deleteSubjectofInstitution(formValue: any): void {
     this.subjectinstitutionService.deleteSubjectofInstitution(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getSubjectofInstitutions เพื่อแสดงข้อมูลล่าสุด
-            this.getSubjectofInstitutions();
-          }
-        });
+      (messages) => {
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getSubjectofInstitutions เพื่อแสดงข้อมูลล่าสุด
+              this.getSubjectofInstitutions();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -131,17 +159,31 @@ export class SubjectInstitutionComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูลวิชาจากสถาบันเดิม
   insertSubjectofInstitution(formValue: any): void {
     this.subjectinstitutionService.insertSubjectofInstitution(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getSubjectofInstitutions เพื่อแสดงข้อมูลล่าสุด
-            this.getSubjectofInstitutions();
-          }
-        });
+      (messages) => {
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getSubjectofInstitutions เพื่อแสดงข้อมูลล่าสุด
+              this.getSubjectofInstitutions();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -155,11 +197,11 @@ export class SubjectInstitutionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -174,11 +216,11 @@ export class SubjectInstitutionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

@@ -95,17 +95,32 @@ export class SubjectComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูลวิชา
   updateSubject(formValue: any): void {
     this.subjectService.updateSubject(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getSubjects();
-          }
-        });
+        if (messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getSubjects();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -113,17 +128,32 @@ export class SubjectComponent implements OnInit {
   //แสดงข้อความลบข้อมูลวิชา
   deleteSubject(formValue: any): void {
     this.subjectService.deleteSubject(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getSubjects();
-          }
-        });
+        if (messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getSubjects();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -131,17 +161,32 @@ export class SubjectComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูลวิชา
   insertSubject(formValue: any): void {
     this.subjectService.insertSubject(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getSubjects();
-          }
-        });
+        if (messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getSubjects();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -155,26 +200,26 @@ export class SubjectComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      } else if (result.event === 'แก้ไข') {
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
 
     //openDialog(): void {
-      //     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      //       width: '250px',
-      //       data: {name: this.name, animal: this.animal}
-      //     });
+    //     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    //       width: '250px',
+    //       data: {name: this.name, animal: this.animal}
+    //     });
 
-      //     dialogRef.afterClosed().subscribe(result => {
-      //       console.log('The dialog was closed');
-      //       this.animal = result;
-      //     });
-      //   }
+    //     dialogRef.afterClosed().subscribe(result => {
+    //       console.log('The dialog was closed');
+    //       this.animal = result;
+    //     });
+    //   }
 
   }
 
@@ -187,26 +232,26 @@ export class SubjectComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      } else if (result.event === 'แก้ไข') {
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
 
     //openDialog(): void {
-      //     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      //       width: '250px',
-      //       data: {name: this.name, animal: this.animal}
-      //     });
+    //     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    //       width: '250px',
+    //       data: {name: this.name, animal: this.animal}
+    //     });
 
-      //     dialogRef.afterClosed().subscribe(result => {
-      //       console.log('The dialog was closed');
-      //       this.animal = result;
-      //     });
-      //   }
+    //     dialogRef.afterClosed().subscribe(result => {
+    //       console.log('The dialog was closed');
+    //       this.animal = result;
+    //     });
+    //   }
 
   }
 

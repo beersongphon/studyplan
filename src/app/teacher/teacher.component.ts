@@ -96,19 +96,33 @@ export class TeacherComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูลอาจารย์
   updateTeacher(formValue: any): void {
     this.teacherService.updateTeacher(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // // this.dataSource = users;
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTeachers();
-        //   }
-        // });
-        alert(message.message);
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTeachers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTeachers();
       }
     );
@@ -119,16 +133,30 @@ export class TeacherComponent implements OnInit {
     this.teacherService.deleteTeacher(formValue).subscribe(
       (message) => {
         // // this.dataSource = users;
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTeachers();
-        //   }
-        // });
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTeachers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
         alert(message.message);
         this.getTeachers();
       }
@@ -140,17 +168,30 @@ export class TeacherComponent implements OnInit {
     this.teacherService.insertTeacher(formValue).subscribe(
       (message) => {
         // // this.dataSource = users;
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTeachers();
-        //   }
-        // });
-        alert(message.message);
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTeachers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }ge.message);
         this.getTeachers();
       }
     );
@@ -161,16 +202,30 @@ export class TeacherComponent implements OnInit {
     this.teacherService.insertUser(formValue).subscribe(
       (message) => {
         // // this.dataSource = users;
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTeachers();
-        //   }
-        // });
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTeachers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
         alert(message.message);
         this.getTeachers();
       }
@@ -182,16 +237,30 @@ export class TeacherComponent implements OnInit {
     this.teacherService.updateUser(formValue).subscribe(
       (message) => {
         // // this.dataSource = users;
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTeachers();
-        //   }
-        // });
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTeachers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
         alert(message.message);
         this.getTeachers();
       }
@@ -203,16 +272,30 @@ export class TeacherComponent implements OnInit {
     this.teacherService.deleteUser(formValue).subscribe(
       (message) => {
         // // this.dataSource = users;
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTeachers();
-        //   }
-        // });
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTeachers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
         alert(message.message);
         this.getTeachers();
       }
@@ -228,11 +311,11 @@ export class TeacherComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -247,11 +330,11 @@ export class TeacherComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

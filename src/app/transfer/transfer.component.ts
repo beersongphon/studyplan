@@ -103,18 +103,32 @@ export class TransferComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูล
   updateTransfer(formValue: any): void {
     this.transferService.updateTransfer(formValue).subscribe(
-      (message) => {
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTransfers();
-        //   }
-        // });
-        alert(message.message);
+      (messages) => {
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTransfers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTransfers();
       }
     );
@@ -123,18 +137,32 @@ export class TransferComponent implements OnInit {
   //แสดงข้อความลบข้อมูล
   deleteTransfer(formValue: any): void {
     this.transferService.deleteTransfer(formValue).subscribe(
-      (message) => {
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTransfers();
-        //   }
-        // });
-        alert(message.message);
+      (messages) => {
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTransfers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTransfers();
       }
     );
@@ -143,18 +171,32 @@ export class TransferComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูล
   insertTransfer(formValue: any): void {
     this.transferService.insertTransfer(formValue).subscribe(
-      (message) => {
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTransfers();
-        //   }
-        // });
-        alert(message.message);
+      (messages) => {
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTransfers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTransfers();
       }
     );
@@ -163,18 +205,32 @@ export class TransferComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูล
   updateTransferDetail(formValue: any): void {
     this.transferService.updateTransferDetail(formValue).subscribe(
-      (message) => {
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTransfers();
-        //   }
-        // });
-        alert(message.message);
+      (messages) => {
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTransfers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTransfers();
       }
     );
@@ -183,18 +239,32 @@ export class TransferComponent implements OnInit {
   //แสดงข้อความลบข้อมูล
   deleteTransferDetail(formValue: any): void {
     this.transferService.deleteTransferDetail(formValue).subscribe(
-      (message) => {
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTransfers();
-        //   }
-        // });
-        alert(message.message);
+      (messages) => {
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTransfers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTransfers();
       }
     );
@@ -203,18 +273,32 @@ export class TransferComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูล
   insertTransferDetail(formValue: any): void {
     this.transferService.insertTransferDetail(formValue).subscribe(
-      (message) => {
-        // Swal.fire({
-        //   title: (message.message),
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((result) => {
-        //   if (result.isDismissed) {
-        //     //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
-        //     this.getTransfers();
-        //   }
-        // });
-        alert(message.message);
+      (messages) => {
+        // if(messages.status == "success") {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       //เรียก function getTransfers เพื่อแสดงข้อมูลล่าสุด
+        //       this.getTransfers();
+        //     }
+        //   });
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: (messages.message),
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   }).then((result) => {
+        //     if (result.isDismissed) {
+        //       window.history.back;
+        //     }
+        //   });
+        // }
+        alert(messages.message);
         this.getTransfers();
       }
     );
@@ -229,11 +313,11 @@ export class TransferComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });
@@ -248,11 +332,11 @@ export class TransferComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'แก้ไข'){
+      }else if (result.event === 'แก้ไข'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

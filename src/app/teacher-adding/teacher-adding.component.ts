@@ -86,17 +86,32 @@ export class TeacherAddingComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูลเพิ่ม ถอน
   updateAdding(formValue: any): void {
     this.studentaddingService.updateAdding(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getAddings();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getAddings();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -104,17 +119,32 @@ export class TeacherAddingComponent implements OnInit {
   //แสดงข้อความลบข้อมูลเพิ่ม ถอน
   deleteAdding(formValue: any): void {
     this.studentaddingService.deleteAdding(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getAddings();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getAddings();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -122,17 +152,32 @@ export class TeacherAddingComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูลเพิ่ม ถอน
   insertAdding(formValue: any): void {
     this.studentaddingService.insertAdding(formValue).subscribe(
-      (message) => {
+      (messages) => {
         // this.dataSource = users;
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            this.getAddings();
-          }
-        });
+        if(messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getAddings เพื่อแสดงข้อมูลล่าสุด
+              this.getAddings();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -146,11 +191,11 @@ export class TeacherAddingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม'){
         this.addRowData(result.data);
-      }else if (result === 'ทำการอนุมัติ'){
+      }else if (result.event === 'ทำการอนุมัติ'){
         this.updateRowData(result.data);
-      }else if (result === 'ลบ'){
+      }else if (result.event === 'ลบ'){
         this.deleteRowData(result.data);
       }
     });

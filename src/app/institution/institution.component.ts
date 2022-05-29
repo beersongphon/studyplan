@@ -92,41 +92,31 @@ export class InstitutionComponent implements OnInit {
   //แสดงข้อความแก้ไขข้อมูล
   updateInstitution(formValue: any): void {
     this.institutionService.updateInstitution(formValue).subscribe(
-      (message) => {
-        // if (message.status) {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (message.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
-        //       this.getInstitutions();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (message.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
-            this.getInstitutions();
-          }
-        });
+      (messages) => {
+        if (messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
+              this.getInstitutions();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -134,17 +124,31 @@ export class InstitutionComponent implements OnInit {
   //แสดงข้อความลบข้อมูล
   deleteInstitution(formValue: any): void {
     this.institutionService.deleteInstitution(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
-            this.getInstitutions();
-          }
-        });
+      (messages) => {
+        if (messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
+              this.getInstitutions();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -152,17 +156,31 @@ export class InstitutionComponent implements OnInit {
   //แสดงข้อความเพิ่มข้อมูล
   insertInstitution(formValue: any): void {
     this.institutionService.insertInstitution(formValue).subscribe(
-      (message) => {
-        Swal.fire({
-          title: (message.message),
-          showConfirmButton: false,
-          timer: 1500
-        }).then((result) => {
-          if (result.isDismissed) {
-            //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
-            this.getInstitutions();
-          }
-        });
+      (messages) => {
+        if (messages.status == "success") {
+          Swal.fire({
+            icon: 'success',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              //เรียก function getInstitutions เพื่อแสดงข้อมูลล่าสุด
+              this.getInstitutions();
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
       }
     );
   }
@@ -176,11 +194,11 @@ export class InstitutionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      } else if (result.event === 'แก้ไข') {
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
@@ -195,11 +213,11 @@ export class InstitutionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      } else if (result.event === 'แก้ไข') {
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
@@ -234,13 +252,14 @@ export class InstitutionComponent implements OnInit {
   }
 
   //ลบข้อมูล
-  deleteRowData(row_obj): void{
+  deleteRowData(row_obj): void {
     this.institution = this.institution.filter(
-      (value, key) =>{
-        if(value.Institution_ID === row_obj.Institution_ID){
+      (value, key) => {
+        if (value.Institution_ID === row_obj.Institution_ID) {
           this.deleteInstitution(row_obj);
         }
-      return value.Institution_ID !== row_obj.Institution_ID;
-    });
+        return value.Institution_ID !== row_obj.Institution_ID;
+      }
+    );
   }
 }
