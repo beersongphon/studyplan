@@ -54,17 +54,4 @@ export class StudentAddingService {
     const apiHeader = { 'Content-Type': 'application/json' };
     return this.http.post<any>(environment.apiUrl + '/api_delete_adding.php', formValue, { headers: apiHeader });
   }
-
-  //สร้าง function สำหรับเรียกข้อมูลนักศึกษา
-  getStudents(): Observable<Student[]>{
-    const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<Student[]>(environment.apiUrl+ '/api_show_student.php', { headers: apiHeader });
-  }
-
-  //สร้าง function สำหรับเรียกข้อมูลเพิ่ม ถอน ทั้งหมด สำหรับนักศึกษา
-  getStudent(formValue: any): Observable<any[]>{
-    const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.post<any>(environment.apiUrl + '/api_show_student.php', formValue, { headers: apiHeader });
-  }
-
 }

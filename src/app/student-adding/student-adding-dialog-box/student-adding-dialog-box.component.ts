@@ -101,7 +101,7 @@ export class StudentAddingDialogBoxComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getStudents();
+    // this.getStudents();
     this.getTeacher();
     this.getSubject();
     this.getYear();
@@ -161,13 +161,13 @@ export class StudentAddingDialogBoxComponent implements OnInit, OnDestroy {
     );
   }
 
-  getStudents(): void{
-    this.sub = this.studentaddingService.getStudents().subscribe(
-      (students) => {
-        this.student = this.student.concat(students);
-      }
-    );
-  }
+  // getStudents(): void{
+  //   this.sub = this.studentaddingService.getStudents().subscribe(
+  //     (students) => {
+  //       this.student = this.student.concat(students);
+  //     }
+  //   );
+  // }
 
   getTeacher(): void{
     this.sub = this.studentaddingService.getTeacher().subscribe(

@@ -24,7 +24,7 @@ export class ListnameTransferComponent implements OnInit {
   //สร้างตัวแปรสำหรับเก็บข้อมูลที่ดึงมาจาก API
   structure: Structure[];
 
-  id: string;
+  id: number;
   content: any[];
   title: string;
 
@@ -42,7 +42,7 @@ export class ListnameTransferComponent implements OnInit {
   ngOnInit(): void {
     //แสดงชื่อแท็บของเว็บไซค์
     this.titleQ.setTitle('โครงสร้างหลักสูตร');
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.id = +this.route.snapshot.paramMap.get('id');
     this.title = this.route.snapshot.paramMap.get('title') ||'';
     //เรียก function getStructureContent เมื่อ App เริ่มทำงาน
     this.getTransfer();

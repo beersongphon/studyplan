@@ -16,12 +16,6 @@ export class AddingService {
     return localStorage.getItem('token');
   }
 
-  //สร้าง function สำหรับเรียกข้อมูลนักศึกษา
-  getStudent(): Observable<Student[]>{
-    const apiHeader = { 'Authorization': this.getToken() };
-    return this.http.get<Student[]>(environment.apiUrl + '/api_show_student.php', { headers: apiHeader });
-  }
-
   //สร้าง function สำหรับเรียกจำนวนข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
   getAdding(): Observable<Adding[]>{
     const apiHeader = { 'Authorization': this.getToken() };

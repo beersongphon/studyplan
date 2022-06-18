@@ -23,7 +23,7 @@ export class ReportTransferSecService {
   }
 
   //สร้าง function สำหรับเรียกข้อมูลเพิ่มถอนสำหรับอนุมัติทั้งหมด
-  getTransfer(id: string, title: string): Observable<any[]>{
+  getTransfer(id: number, title: string): Observable<any[]>{
     const p = {
       'id': id.toString(),
       'title' : title

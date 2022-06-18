@@ -44,7 +44,7 @@ export class ReportAddingComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.title = this.route.snapshot.paramMap.get('title') ||'';
     //เรียก function getStudent เมื่อ App เริ่มทำงาน
-    this.getStudent();
+    // this.getStudent();
     //เรียก function getAddingContent เมื่อ App เริ่มทำงาน
     this.getAddingContent();
   }
@@ -60,13 +60,13 @@ export class ReportAddingComponent implements OnInit {
   }
 
   //รับข้อมูลนักศึกษา
-  getStudent(): void {
-    this.addingService.getStudent().subscribe(
-      (students) => {
-        this.student = students;
-      }
-    );
-  }
+  // getStudent(): void {
+  //   this.addingService.getStudent().subscribe(
+  //     (students) => {
+  //       this.student = students;
+  //     }
+  //   );
+  // }
 
   //ปริ้นรายงาน PDF
   printPage() {

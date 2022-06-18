@@ -99,8 +99,8 @@ export class CourseComponent implements OnInit {
 
 
     if (this.dataSource.paginator) {
-       this.dataSource.paginator.firstPage();
-     }
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 
@@ -108,7 +108,7 @@ export class CourseComponent implements OnInit {
   updateCourse(formValue: any): void {
     this.courseService.updateCourse(formValue).subscribe(
       (messages) => {
-        if(messages.status == "success") {
+        if (messages.status == "success") {
           Swal.fire({
             icon: 'success',
             title: (messages.message),
@@ -140,7 +140,7 @@ export class CourseComponent implements OnInit {
   deleteCourse(formValue: any): void {
     this.courseService.deleteCourse(formValue).subscribe(
       (messages) => {
-        if(messages.status == "success") {
+        if (messages.status == "success") {
           Swal.fire({
             icon: 'success',
             title: (messages.message),
@@ -172,7 +172,7 @@ export class CourseComponent implements OnInit {
   insertCourse(formValue: any): void {
     this.courseService.insertCourse(formValue).subscribe(
       (messages) => {
-        if(messages.status == "success") {
+        if (messages.status == "success") {
           Swal.fire({
             icon: 'success',
             title: (messages.message),
@@ -209,11 +209,11 @@ export class CourseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      } else if (result.event === 'แก้ไข') {
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
@@ -228,11 +228,11 @@ export class CourseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'เพิ่ม'){
+      if (result.event === 'เพิ่ม') {
         this.addRowData(result.data);
-      }else if (result.event === 'แก้ไข'){
+      } else if (result.event === 'แก้ไข') {
         this.updateRowData(result.data);
-      }else if (result.event === 'ลบ'){
+      } else if (result.event === 'ลบ') {
         this.deleteRowData(result.data);
       }
     });
@@ -243,11 +243,11 @@ export class CourseComponent implements OnInit {
     this.insertCourse(row_obj);
     /*this.dataSource.push(
       {
-      id: row_obj.id,
-      fullname: row_obj.fullname,
-      province: row_obj.province,
-      email: row_obj.email,
-      password: row_obj.password
+        id: row_obj.id,
+        fullname: row_obj.fullname,
+        province: row_obj.province,
+        email: row_obj.email,
+        password: row_obj.password
       }
     );
     this.table.renderRows();*/
@@ -269,14 +269,14 @@ export class CourseComponent implements OnInit {
   }
 
   //ลบข้อมูล
-  deleteRowData(row_obj): void{
+  deleteRowData(row_obj): void {
     this.course = this.course.filter(
-      (value, key) =>{
-        if(value.Course_ID === row_obj.Course_ID){
+      (value, key) => {
+        if (value.Course_ID === row_obj.Course_ID) {
           this.deleteCourse(row_obj);
         }
         this.dataSource.data = this.course;
-      return value.Course_ID !== row_obj.Course_ID;
+        return value.Course_ID !== row_obj.Course_ID;
       }
     );
   }

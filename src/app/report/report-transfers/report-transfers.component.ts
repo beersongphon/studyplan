@@ -44,7 +44,7 @@ export class ReportTransfersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //เรียก function getStudent เมื่อ App เริ่มทำงาน
-    this.getStudent();
+    // this.getStudent();
     //เรียก function getCoursetransfer เมื่อ App เริ่มทำงาน
     this.getCoursetransfer();
     //แสดงชื่อแท็บของเว็บไซค์
@@ -67,13 +67,13 @@ export class ReportTransfersComponent implements OnInit, OnDestroy {
   }
 
   //รับข้อมูลนักศึกษา
-  getStudent(): void {
-    this.reporttransfersService.getStudent().subscribe(
-      (students) => {
-        this.student = students;
-      }
-    );
-  }
+  // getStudent(): void {
+  //   this.reporttransfersService.getStudent().subscribe(
+  //     (students) => {
+  //       this.student = students;
+  //     }
+  //   );
+  // }
 
   //จะถูกเรียก component จะถูกทำลายใช้สำหรับการ unsubscribe พวก observable และ event ต่างๆ ที่ subscribed ไว้เพื่อไม่ให้เกิดปัญหา memory leak
   ngOnDestroy(): void{

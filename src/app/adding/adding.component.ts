@@ -32,19 +32,15 @@ export class AddingComponent implements OnInit, OnDestroy {
     this.title.setTitle('รายงานข้อมูลการเพิ่มถอน');
     //เรียก function getAdding เมื่อ App เริ่มทำงาน
     this.getAdding();
-    this.addingService.getAdding().subscribe(
-      (addings) => {
-        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getAdding
-        this.adding = addings;
-      }
-    );
   }
 
   //รับข้อมูลการเพิ่มถอน
   getAdding(): void {
     this.sub = this.addingService.getAdding().subscribe(
-      (reportaddings) => {
-        console.log(reportaddings);
+      (addings) => {
+        //นำข้อมูลที่ได้เก็บไว้ที่ตัวแปร getAdding
+        this.adding = addings;
+        console.log(addings);
       }
     );
   }

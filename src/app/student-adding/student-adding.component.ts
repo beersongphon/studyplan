@@ -70,8 +70,6 @@ export class StudentAddingComponent implements OnInit {
   ngOnInit(): void {
     //แสดงชื่อแท็บของเว็บไซค์
     this.title.setTitle('เพิ่มถอนรายวิชา');
-    //เรียก function getStudents เมื่อ App เริ่มทำงาน
-    this.getStudents();
     //เรียก function getAddings เมื่อ App เริ่มทำงาน
     this.getAddings();
   }
@@ -218,24 +216,6 @@ export class StudentAddingComponent implements OnInit {
           this.deleteAdding(row_obj);
         }
         return value.Add_With_ID !== row_obj.Add_With_ID;
-      }
-    );
-  }
-
-  //รับข้อมูลนักศึกษา
-  getStudents(): void {
-    this.studentaddingService.getStudents().subscribe(
-      (students) => {
-        this.student = students;
-      }
-    );
-  }
-
-  //รับข้อมูลนักศึกษา
-  getStudent(formValue: any): void {
-    this.studentaddingService.getStudent(formValue).subscribe(
-      (students) => {
-        this.student = students;
       }
     );
   }
