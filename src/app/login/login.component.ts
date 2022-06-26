@@ -76,6 +76,19 @@ export class LoginComponent implements OnInit {
             timer: 1500
           }).then((result) => {
             if (result.isDismissed) {
+              // if(token.data.Userlevel_ID == "1") {
+              //   const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/home';
+              //   this.router.navigate([redirect]);
+              //   // this.router.navigate(['/']);
+              // } else if(token.data.Userlevel_ID == "2") {
+              //   const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/student';
+              //   this.router.navigate([redirect]);
+              //   // this.router.navigate(['/']);
+              // } else if(token.data.Userlevel_ID == "3") {
+              //   const redirect = this.apiService.redirectUrl ? this.apiService.redirectUrl : '/teacher';
+              //   this.router.navigate([redirect]);
+              //   // this.router.navigate(['/']);
+              // }
               localStorage.setItem('token', (token.data.User_ID));
               localStorage.setItem('userlevel_id', (token.data.Userlevel_ID));
               this.isLogin = true;
