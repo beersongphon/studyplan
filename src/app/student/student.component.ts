@@ -111,68 +111,104 @@ export class StudentComponent implements OnInit {
 
   //แสดงข้อความแก้ไขข้อมูลนักศึกษา
   updateStudent(formValue: any): void {
-    this.studentService.updateStudent(formValue).subscribe(
+    this.studentService.updateUser(formValue).subscribe(
       (messages) => {
-        // if (messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
-        //       this.getStudents();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(messages.message);
-        this.getStudents();
+        // this.dataSource = users;
+        if (messages.status == "success") {
+          this.studentService.updateStudent(formValue).subscribe(
+            (messages) => {
+              if (messages.status == "success") {
+                Swal.fire({
+                  icon: 'success',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
+                    this.getStudents();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    window.history.back;
+                  }
+                });
+              }
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
+        // alert(messages.message);
+        // this.getStudents();
       }
     );
   }
 
   //แสดงข้อความลบข้อมูลนักศึกษา
   deleteStudent(formValue: any): void {
-    this.studentService.deleteStudent(formValue).subscribe(
+    this.studentService.deleteUser(formValue).subscribe(
       (messages) => {
-        // if (messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
-        //       this.getStudents();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(messages.message);
-        this.getStudents();
+        // this.dataSource = users;
+        if (messages.status == "success") {
+          this.studentService.deleteStudent(formValue).subscribe(
+            (messages) => {
+              if (messages.status == "success") {
+                Swal.fire({
+                  icon: 'success',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
+                    this.getStudents();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    window.history.back;
+                  }
+                });
+              }
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
+        // alert(messages.message);
+        // this.getStudents();
       }
     );
   }
@@ -181,138 +217,51 @@ export class StudentComponent implements OnInit {
   insertStudent(formValue: any): void {
     this.studentService.insertStudent(formValue).subscribe(
       (messages) => {
-        // // this.dataSource = users;
-        // if (messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
-        //       this.getStudents();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(messages.message);
-        this.getStudents();
-      }
-    );
-  }
-
-  //แสดงข้อความเพิ่มข้อมูลผู้ใช้
-  insertUser(formValue: any): void {
-    this.studentService.insertUser(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if (messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
-        //       this.getStudents();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getStudents();
-      }
-    );
-  }
-
-  //แสดงข้อความแก้ไขข้อมูลผู้ใช้
-  updateUser(formValue: any): void {
-    this.studentService.updateUser(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if (messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
-        //       this.getStudents();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getStudents();
-      }
-    );
-  }
-
-  //แสดงข้อความลบข้อมูลผู้ใช้
-  deleteUser(formValue: any): void {
-    this.studentService.deleteUser(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if (messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
-        //       this.getStudents();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getStudents();
+        // this.dataSource = users;
+        if (messages.status == "success") {
+          this.studentService.insertUser(formValue).subscribe(
+            (messages) => {
+              // this.dataSource = users;
+              if (messages.status == "success") {
+                Swal.fire({
+                  icon: 'success',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    //เรียก function getStudents เพื่อแสดงข้อมูลล่าสุด
+                    this.getStudents();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    window.history.back;
+                  }
+                });
+              }
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
+        // alert(messages.message);
+        // this.getStudents();
       }
     );
   }
@@ -357,7 +306,6 @@ export class StudentComponent implements OnInit {
 
   //เพิ่มข้อมูล
   addRowData(row_obj): void {
-    this.insertUser(row_obj);
     this.insertStudent(row_obj);
     /*this.dataSource.push(
       {
@@ -389,7 +337,6 @@ export class StudentComponent implements OnInit {
           value.Password = row_obj.Password;
           value.Userlevel_ID = row_obj.Userlevel_ID;
           this.updateStudent(row_obj);
-          this.updateUser(row_obj);
         }
         return true;
       }
@@ -402,7 +349,6 @@ export class StudentComponent implements OnInit {
       (value, key) => {
         if (value.User_ID === row_obj.User_ID) {
           this.deleteStudent(row_obj);
-          this.deleteUser(row_obj);
         }
         return value.User_ID !== row_obj.User_ID;
       }

@@ -95,209 +95,159 @@ export class TeacherComponent implements OnInit {
 
   //แสดงข้อความแก้ไขข้อมูลอาจารย์
   updateTeacher(formValue: any): void {
-    this.teacherService.updateTeacher(formValue).subscribe(
+    this.teacherService.updateUser(formValue).subscribe(
       (messages) => {
-        // // this.dataSource = users;
-        // if(messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //       this.getTeachers();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(messages.message);
-        this.getTeachers();
+        // this.dataSource = users;
+        if(messages.status == "success") {
+          this.teacherService.updateTeacher(formValue).subscribe(
+            (messages) => {
+              // this.dataSource = users;
+              if(messages.status == "success") {
+                Swal.fire({
+                  icon: 'success',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+                    this.getTeachers();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    window.history.back;
+                  }
+                });
+              }
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
+        // alert(messages.message);
+        // this.getTeachers();
       }
     );
   }
 
   //แสดงข้อความลบข้อมูลอาจารย์
   deleteTeacher(formValue: any): void {
-    this.teacherService.deleteTeacher(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if(messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //       this.getTeachers();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getTeachers();
+    this.teacherService.deleteUser(formValue).subscribe(
+      (messages) => {
+        // this.dataSource = users;
+        if(messages.status == "success") {
+          this.teacherService.deleteTeacher(formValue).subscribe(
+            (messages) => {
+              // this.dataSource = users;
+              if(messages.status == "success") {
+                Swal.fire({
+                  icon: 'success',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+                    this.getTeachers();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    window.history.back;
+                  }
+                });
+              }
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
+        // alert(messages.message);
+        // this.getTeachers();
       }
     );
   }
 
   //แสดงข้อความเพิ่มข้อมูลอาจารย์
   insertTeacher(formValue: any): void {
-    this.teacherService.insertTeacher(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if(messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //       this.getTeachers();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }ge.message);
-        this.getTeachers();
-      }
-    );
-  }
-
-  //แสดงข้อความเพิ่มข้อมูลผู้ใช้
-  insertUser(formValue: any): void {
     this.teacherService.insertUser(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if(messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //       this.getTeachers();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getTeachers();
-      }
-    );
-  }
-
-  //แสดงข้อความแก้ไขข้อมูลผู้ใช้
-  updateUser(formValue: any): void {
-    this.teacherService.updateUser(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if(messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //       this.getTeachers();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getTeachers();
-      }
-    );
-  }
-
-  //แสดงข้อความลบข้อมูลผู้ใช้
-  deleteUser(formValue: any): void {
-    this.teacherService.deleteUser(formValue).subscribe(
-      (message) => {
-        // // this.dataSource = users;
-        // if(messages.status == "success") {
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
-        //       this.getTeachers();
-        //     }
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: (messages.message),
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   }).then((result) => {
-        //     if (result.isDismissed) {
-        //       window.history.back;
-        //     }
-        //   });
-        // }
-        alert(message.message);
-        this.getTeachers();
+      (messages) => {
+        // this.dataSource = users;
+        if(messages.status == "success") {
+          this.teacherService.insertTeacher(formValue).subscribe(
+            (messages) => {
+              // this.dataSource = users;
+              if(messages.status == "success") {
+                Swal.fire({
+                  icon: 'success',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    //เรียก function getTeachers เพื่อแสดงข้อมูลล่าสุด
+                    this.getTeachers();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: (messages.message),
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  if (result.isDismissed) {
+                    window.history.back;
+                  }
+                });
+              }
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: (messages.message),
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              window.history.back;
+            }
+          });
+        }
+        // alert(messages.message);
+        // this.getTeachers();
       }
     );
   }
@@ -342,7 +292,6 @@ export class TeacherComponent implements OnInit {
 
   //เพิ่มข้อมูล
   addRowData(row_obj): void {
-    this.insertUser(row_obj);
     this.insertTeacher(row_obj);
     /*this.dataSource.push(
       {
@@ -368,7 +317,6 @@ export class TeacherComponent implements OnInit {
           value.Password = row_obj.Password;
           value.Userlevel_ID = row_obj.Userlevel_ID;
           this.updateTeacher(row_obj);
-          this.updateUser(row_obj);
         }
         return true;
       }
@@ -381,7 +329,6 @@ export class TeacherComponent implements OnInit {
       (value, key) => {
         if (value.User_ID === row_obj.User_ID) {
           this.deleteTeacher(row_obj);
-          this.deleteUser(row_obj);
         }
         return value.User_ID !== row_obj.User_ID;
       }
